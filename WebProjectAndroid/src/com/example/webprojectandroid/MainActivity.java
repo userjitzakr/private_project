@@ -70,7 +70,7 @@ public class MainActivity extends Activity {
 			}
 			else
 			{
-				webView.loadUrl("http://192.168.1.7/php/quotes.php");
+				webView.loadUrl("http://192.168.1.102/php/quotes.php");
 				//I have included web permissions in the AndroidManifest.xml
 				webView.setWebChromeClient(new WebChromeClient());
 				WebSettings webSettings = webView.getSettings();
@@ -85,7 +85,7 @@ public class MainActivity extends Activity {
 	}	
 private boolean isServerUp() {
 	try {
-		InetAddress ina = InetAddress.getByName("192.168.1.7");
+		InetAddress ina = InetAddress.getByName("192.168.1.102");
 		if(ina.isReachable(3000)) {
 			return true;
 		}
