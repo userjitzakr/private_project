@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">quotes</string>
+    <string name="ad_Unit_ID">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="button_next_text">NEXT</string>
+
+</resources>

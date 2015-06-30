@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quotes>
+	<quote>     
+		<msg>you can do it</msg>
+		<id>0</id>
+	</quote>
+	<quote>     
+		<msg>Love me or hate me I’m still gonna shine.</msg>
+		<id>1</id>
+	</quote>
+	<quote>     
+		<msg>No matter what happens, i will never leave you alone</msg>
+		<id>2</id>
+	</quote>
+	<quote>     
+		<msg>think twice before you act</msg>
+		<id>3</id>
+	</quote>
+	<quote>     
+		<msg>Start doing what is necessary; then do what is possible; and suddenly you are doing the impossible</msg>
+		<id>4</id>
+	</quote>
+	<quote>     
+		<msg>The best and most beautiful things in the world cannot be seen or even touched, they must be felt with the heart</msg>
+		<id>5</id>
+	</quote>
+	<quote>     
+		<msg>Perfection is not attainable, but if we chase perfection we can catch excellence</msg>
+		<id>6</id>
+	</quote>
+	<quote>     
+		<msg>We know what we are, but we know not what we may be</msg>
+		<id>7</id>
+	</quote>
+	<quote>     
+		<msg>Nothing is impossible. The word itself says I'm possible</msg>
+		<id>8</id>
+	</quote>
+	<quote>     
+		<msg>I can't catch the direction of wind, but I can adjust my sails to reach my destination</msg>
+		<id>9</id>
+	</quote>
+	<quote>     
+		<msg>Try to be a rainbow in someones cloud</msg>
+		<id>10</id>
+	</quote>
+	<quote>     
+		<msg>Put your heart, mind and soul into even your smallest acts. This is the secret of success</msg>
+		<id>11</id>
+	</quote>
+	<quote>     
+		<msg>Its during our darkest moments that we must focus to see the lights</msg>
+		<id>12</id>
+	</quote>
+	<quote>     
+		<msg>Change your thoughts and you change the world</msg>
+		<id>13</id>
+	</quote>
+	<quote>     
+		<msg>Believe you can and you're halfway there</msg>
+		<id>14</id>
+	</quote>
+	<quote>     
+		<msg>If opportunity doesnt knock, build a door</msg>
+		<id>15</id>
+	</quote>
+	<quote>     
+		<msg>We can't help everyone. But everyone can help someone</msg>
+		<id>16</id>
+	</quote>
+	<quote>     
+		<msg>The measure of who we are is what we do with what we have</msg>
+		<id>17</id>
+	</quote>
+	<quote>     
+		<msg>There are two ways of spreading lights; to be the candle or the mirror that reflects it</msg>
+		<id>18</id>
+	</quote>
+	<quote>     
+		<msg>Don't judge each day by the harvest you reap but by the seeds you plant</msg>
+		<id>19</id>
+	</quote>
+	<quote>     
+		<msg>Whoever is happy will make others happy too</msg>
+		<id>20</id>
+	</quote>
+	<quote>     
+		<msg>Don't cry because it is over, smile because it happened</msg>
+		<id>21</id>
+	</quote>
+	<quote>     
+		<msg>Be yourself, everyone else is already taken</msg>
+		<id>22</id>
+	</quote>
+	<quote>     
+		<msg>Sometimes breakups aren’t meant for makeups, sometimes they are meant for wake-ups.</msg>
+		<id>23</id>
+	</quote>
+	<quote>     
+		<msg>A room without books is like a body without soul</msg>
+		<id>24</id>
+	</quote>
+	<quote>     
+		<msg>You know you are in love when you cant fall asleep because reality is finally better than your dreams</msg>
+		<id>25</id>
+	</quote>
+	<quote>     
+		<msg>So many books, so little time</msg>
+		<id>26</id>
+	</quote>
+	<quote>     
+		<msg>You only live once, but if you do it right, once is enough</msg>
+		<id>27</id>
+	</quote>
+	<quote>     
+		<msg>Be the change that you wish to see in the world</msg>
+		<id>28</id>
+	</quote>
+	<quote>     
+		<msg>In three words, I can sumup everything that I learned about life: it goes on</msg>
+		<id>29</id>
+	</quote>
+	<quote>     
+		<msg>No one can make you feel inferior without your consent</msg>
+		<id>30</id>
+	</quote>
+	<quote>     
+		<msg>If you tell the truth, you dont have to remember everything</msg>
+		<id>31</id>
+	</quote>
+	<quote>     
+		<msg>A friend is someone who knows all about you and still loves you</msg>
+		<id>32</id>
+	</quote>
+	<quote>     
+		<msg>Always forgive your enemies, nothing annoys them so much</msg>
+		<id>33</id>
+	</quote>
+	<quote>     
+		<msg>Live as if you were to die tomorrow; Learn as if you were to live forever</msg>
+		<id>34</id>
+	</quote>
+	<quote>     
+		<msg>To live is the most difficult thing in the world. Most people exists, that is all</msg>
+		<id>35</id>
+	</quote>
+	<quote>     
+		<msg>Without music, life would be a mistake</msg>
+		<id>36</id>
+	</quote>
+	<quote>     
+		<msg>Insanity is the same thing doing over and over again, but expecting different results</msg>
+		<id>37</id>
+	</quote>
+	<quote>     
+		<msg>Fortune favors the brave</msg>
+		<id>38</id>
+	</quote>
+	<quote>     
+		<msg>You are good enough</msg>
+		<id>39</id>
+	</quote>
+	<quote>     
+		<msg>Work so hard that one day your signature will be called an autograph</msg>
+		<id>40</id>
+	</quote>
+	<quote>     
+		<msg>My memory loves you, it asks about you all the time</msg>
+		<id>41</id>
+	</quote>
+	<quote>     
+		<msg>Honesty is the first chapter in the book of wisdom</msg>
+		<id>42</id>
+	</quote>
+	<quote>     
+		<msg>If I only had one minute to live, I would spent all sixty seconds telling you how much I love you</msg>
+		<id>43</id>
+	</quote>
+	<quote>     
+		<msg>Growing old is mandatory; Growing up is optional</msg>
+		<id>44</id>
+	</quote>
+	<quote>     
+		<msg>Some days are just HARD</msg>
+		<id>45</id>
+	</quote>
+	<quote>     
+		<msg>It feels good to be lost in the right direction</msg>
+		<id>46</id>
+	</quote>
+	<quote>     
+		<msg>Never push a loyal person to a point where they no longer care</msg>
+		<id>47</id>
+	</quote>
+	<quote>     
+		<msg>To us, family means putting your arms around each other and being there</msg>
+		<id>48</id>
+	</quote>
+	<quote>     
+		<msg>Rejoice with your family in the beautiful land of life!</msg>
+		<id>49</id>
+	</quote>
+	<quote>     
+		<msg>The family is a haven in a heartless world.</msg>
+		<id>50</id>
+	</quote>
+	<quote>     
+		<msg>You Always Get Hurt The Moment You Begin To Care.</msg>
+		<id>51</id>
+	</quote>
+	<quote>     
+		<msg>The most painful memory.. when I walked away and you let me go.</msg>
+		<id>52</id>
+	</quote>
+	<quote>     
+		<msg>I feel so far away from the one I wish to hold in my arms :(</msg>
+		<id>53</id>
+	</quote>
+	<quote>     
+		<msg>Its better to be lonely then to be played by wrong people.</msg>
+		<id>54</id>
+	</quote>
+	<quote>     
+		<msg>I will never stop caring, but if you decide to push me away, I will go.</msg>
+		<id>55</id>
+	</quote>
+	<quote>     
+		<msg>I like to listen to sad music when I'm sad to make me double sad.</msg>
+		<id>56</id>
+	</quote>
+	<quote>     
+		<msg>People are lonely because they build walls instead of bridges..</msg>
+		<id>57</id>
+	</quote>
+	<quote>     
+		<msg>Smile and no one will see how broken you are inside.</msg>
+		<id>58</id>
+	</quote>
+	<quote>     
+		<msg>I’m missing something in my life these days.</msg>
+		<id>59</id>
+	</quote>
+	<quote>     
+		<msg>Why does it always have to be the one that you love the most hits</msg>
+		<id>60</id>
+	</quote>
+	<quote>     
+		<msg>loves when you listen to a song and it relates 100% sure to how you feel.</msg>
+		<id>61</id>
+	</quote>
+	<quote>     
+		<msg>The truth hurts for a little while, but lies hurt for a lifetime. </msg>
+		<id>62</id>
+	</quote>
+	<quote>     
+		<msg>I hate being broken. I hate that I cannot go back.</msg>
+		<id>63</id>
+	</quote>
+	<quote>     
+		<msg>I don't usually sleep enough, but when I do, it's still not enough.</msg>
+		<id>64</id>
+	</quote>
+	<quote>     
+		<msg>Love is beautiful mistake of my life.</msg>
+		<id>65</id>
+	</quote>
+	<quote>     
+		<msg>Love is blind, Be careful.</msg>
+		<id>66</id>
+	</quote>
+	<quote>     
+		<msg>Love Is My Favorite Mistake.</msg>
+		<id>67</id>
+	</quote>
+	<quote>     
+		<msg>Love is game for liars and pain for shayars.</msg>
+		<id>68</id>
+	</quote>
+	<quote>     
+		<msg>I may not be perfect, but I'm always me.</msg>
+		<id>69</id>
+	</quote>
+	<quote>     
+		<msg>Trusting you again is my decision, Proving me wrong is your choice.</msg>
+		<id>70</id>
+	</quote>
+	<quote>     
+		<msg>It’s hard to tell your mind to stop loving someone when your heart still does.</msg>
+		<id>71</id>
+	</quote>
+	<quote>     
+		<msg>No more wasting time thinking about wasted time.</msg>
+		<id>72</id>
+	</quote>
+	<quote>     
+		<msg>Pain is inevitable. Suffering is optional.</msg>
+		<id>73</id>
+	</quote>
+	<quote>     
+		<msg>When This Is Over, Remember, I didn’t WALK Away, You Pushed Me Away.</msg>
+		<id>74</id>
+	</quote>
+	<quote>     
+		<msg>Isn’t it sad that you are hurt so much that finally you can say “I’m used to it”.</msg>
+		<id>75</id>
+	</quote>
+	<quote>     
+		<msg>Time doen’t really Heal the heart.It just makes the heart forget all the pain.</msg>
+		<id>76</id>
+	</quote>
+	<quote>     
+		<msg>You cannot protect yourself from sadness without protecting yourself from happiness.</msg>
+		<id>77</id>
+	</quote>
+	<quote>     
+		<msg>A relationship is only made for two….but some just forget how to count.</msg>
+		<id>78</id>
+	</quote>
+	<quote>     
+		<msg>If it’s not a happy ending then it’s not the ending at all.</msg>
+		<id>79</id>
+	</quote>
+	<quote>     
+		<msg>How did we go from talking everyday to strangers?</msg>
+		<id>80</id>
+	</quote>
+	<quote>     
+		<msg>Is finally driven to the point were they finds comfort in lies and shuns the truth.</msg>
+		<id>81</id>
+	</quote>
+	<quote>     
+		<msg>life's so shit it makes wot comes out the dog's ass look good!</msg>
+		<id>82</id>
+	</quote>
+	<quote>     
+		<msg>Why be mean to animals when they treat you better then people.</msg>
+		<id>83</id>
+	</quote>
+	<quote>     
+		<msg>College has given me the confidence I need to fail.</msg>
+		<id>84</id>
+	</quote>
+	<quote>     
+		<msg>Your ignorance makes me to love you more.</msg>
+		<id>85</id>
+	</quote>
+	<quote>     
+		<msg>You treated me like an option so I left you like a choice.</msg>
+		<id>86</id>
+	</quote>
+	<quote>     
+		<msg>I loved you from the bottom of my heart but you didn’t understand.</msg>
+		<id>87</id>
+	</quote>
+	<quote>     
+		<msg>Love never fails, people fail on love.</msg>
+		<id>88</id>
+	</quote>
+	<quote>     
+		<msg>I feel crappy inside, like something just broke.</msg>
+		<id>89</id>
+	</quote>
+	<quote>     
+		<msg>How can I go back to where the smile i had was real.</msg>
+		<id>90</id>
+	</quote>
+	<quote>     
+		<msg>I feel so far away from the one I wish to hold in my arms.</msg>
+		<id>91</id>
+	</quote>
+	<quote>     
+		<msg>The higher you climb on love’s ladder, the harder you fall.</msg>
+		<id>92</id>
+	</quote>
+	<quote>     
+		<msg>You know my name not my story.</msg>
+		<id>93</id>
+	</quote>
+	<quote>     
+		<msg>My room is so quiet and empty, it hurts.</msg>
+		<id>94</id>
+	</quote>
+	<quote>     
+		<msg>The funniest people are the saddest ones.</msg>
+		<id>95</id>
+	</quote>
+	<quote>     
+		<msg>A feeling of sadness seemingly without a cause.</msg>
+		<id>96</id>
+	</quote>
+	<quote>     
+		<msg>I did everything right for someone that does everything wrong.</msg>
+		<id>97</id>
+	</quote>
+	<quote>     
+		<msg>I just need that one person who will stand by me no matter what.</msg>
+		<id>98</id>
+	</quote>
+	<quote>     
+		<msg>The hardest thing to do is watch the person you love, love someone else.</msg>
+		<id>99</id>
+	</quote>
+	<quote>     
+		<msg>Dear bad luck, let’s break up.</msg>
+		<id>100</id>
+	</quote>
+</quotes>
