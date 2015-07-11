@@ -1,9 +1,8 @@
-package com.example.quotes;
+package com.jaApps.quotes;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -27,22 +26,17 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
-import android.R.bool;
+import com.jaApps.quotes.R;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Environment;
-import android.support.annotation.DrawableRes;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
-import android.view.animation.Animation.AnimationListener;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.RelativeLayout;
@@ -50,10 +44,11 @@ import android.widget.SlidingDrawer;
 import android.widget.SlidingDrawer.OnDrawerCloseListener;
 import android.widget.SlidingDrawer.OnDrawerOpenListener;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
+//import com.google.android.gms.ads.AdRequest;
+//import com.google.android.gms.ads.AdView;
+
+@SuppressWarnings("deprecation")
 class Quotes
 {
 	public String msg;
@@ -86,6 +81,7 @@ public class QuoteActivityMain extends Activity  {
 	public int quoteIndexArray[];
 	public int favQuotes[];
 	public Button button_favorite;
+	@SuppressWarnings("deprecation")
 	public SlidingDrawer slidingDrawer;
 	Button slideHandleButton;
 
@@ -427,9 +423,9 @@ public class QuoteActivityMain extends Activity  {
 			e.printStackTrace();
 		}
 		//ADDS
-		AdView newAdview = (AdView)findViewById(R.id.adView);
-        AdRequest newAdReq = new AdRequest.Builder().build();
-        newAdview.loadAd(newAdReq);
+	//	AdView newAdview = (AdView)findViewById(R.id.adView);
+      //  AdRequest newAdReq = new AdRequest.Builder().build();
+       // newAdview.loadAd(newAdReq);
 	}
 	private void addquoteToFav(int id) throws IOException
 	{
@@ -550,7 +546,7 @@ public class QuoteActivityMain extends Activity  {
 			String name = null;
 			switch (eventType){
 			case XmlPullParser.START_DOCUMENT:
-				products = new ArrayList();
+				products = new ArrayList<Quotes>();
 				break;
 			case XmlPullParser.START_TAG:
 				name = parser.getName();	
@@ -599,6 +595,7 @@ public class QuoteActivityMain extends Activity  {
 		isQuoteAvailable = false;
 		new Thread(new Runnable() {
 
+			@SuppressWarnings("deprecation")
 			@Override
 			public void run() {
 
