@@ -45,8 +45,8 @@ import android.widget.SlidingDrawer.OnDrawerCloseListener;
 import android.widget.SlidingDrawer.OnDrawerOpenListener;
 import android.widget.TextView;
 
-//import com.google.android.gms.ads.AdRequest;
-//import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 @SuppressWarnings("deprecation")
 class Quotes
@@ -423,9 +423,11 @@ public class QuoteActivityMain extends Activity  {
 			e.printStackTrace();
 		}
 		//ADDS
-	//	AdView newAdview = (AdView)findViewById(R.id.adView);
-      //  AdRequest newAdReq = new AdRequest.Builder().build();
-       // newAdview.loadAd(newAdReq);
+		AdView newAdview = (AdView)findViewById(R.id.adView);
+        //AdRequest newAdReq = new AdRequest.Builder().build();
+        AdRequest newAdReq = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).addTestDevice("548C643D6A36F2D96EE1BD44A4CB5794").build();
+        //AdRequest newAdReq = new AdRequest.Builder().addTestDevice("548C643D6A36F2D96EE1BD44A4CB5794").build();
+        newAdview.loadAd(newAdReq);
 	}
 	private void addquoteToFav(int id) throws IOException
 	{
