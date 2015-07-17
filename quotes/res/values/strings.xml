@@ -3,6 +3,7 @@
 
     <string name="app_name">Quotes</string>
     <string name="ad_Unit_ID">ca-app-pub-4695095847139423/5098487790</string>
+    <string name="ad_Unit_ID_interstitial">ca-app-pub-4695095847139423/6744527790</string>
     <string name="hello_world">Hello world!</string>
     <string name="button_next_text">NEXT</string>
 

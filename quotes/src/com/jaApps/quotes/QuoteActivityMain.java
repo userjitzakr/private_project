@@ -26,7 +26,6 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
-import com.jaApps.quotes.R;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
@@ -45,8 +44,10 @@ import android.widget.SlidingDrawer.OnDrawerCloseListener;
 import android.widget.SlidingDrawer.OnDrawerOpenListener;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
 
 @SuppressWarnings("deprecation")
 class Quotes
@@ -76,6 +77,7 @@ public class QuoteActivityMain extends Activity  {
 	static final int BTN_FONT_SIZE = 24;
 
 	static final int TOTAL_QUOTE_SIZE = 100;
+	static final int INTERSTITIAL_ADD_DISPLAY_COUNT = 10;
 	static final int INVALID_ID = -11;
 
 	public int quoteIndexArray[];
@@ -87,7 +89,10 @@ public class QuoteActivityMain extends Activity  {
 
 	public boolean viewFav = false;
 	public int favIndex = 0;
+	int retry =10;
+	int quoteCount = 0;
 
+	private InterstitialAd interstitial;
 	@Override
 	public boolean onTouchEvent(MotionEvent event){
 		switch(event.getAction())
@@ -176,7 +181,7 @@ public class QuoteActivityMain extends Activity  {
 					rel_layout.setBackgroundResource(R.drawable.blue_bg);
 					btnFav.setText("Favorites ");
 					viewFav = false;
-				//	text_quote.setTextColor(Color.WHITE);
+					//	text_quote.setTextColor(Color.WHITE);
 				}
 				try {
 					//putQuote();
@@ -423,11 +428,72 @@ public class QuoteActivityMain extends Activity  {
 			e.printStackTrace();
 		}
 		//ADDS
-		AdView newAdview = (AdView)findViewById(R.id.adView);
-        //AdRequest newAdReq = new AdRequest.Builder().build();
-        AdRequest newAdReq = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).addTestDevice("548C643D6A36F2D96EE1BD44A4CB5794").build();
-        //AdRequest newAdReq = new AdRequest.Builder().addTestDevice("548C643D6A36F2D96EE1BD44A4CB5794").build();
-        newAdview.loadAd(newAdReq);
+		final AdView newAdview = (AdView)findViewById(R.id.adView);
+		final AdRequest newAdReq = new AdRequest.Builder().build();
+		//final AdRequest newAdReq = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).addTestDevice("548C643D6A36F2D96EE1BD44A4CB5794").build();
+		// Prepare the Interstitial Ad
+		interstitial = new InterstitialAd(QuoteActivityMain.this);
+		// Insert the Ad Unit ID
+		interstitial.setAdUnitId(getResources().getString(R.string.ad_Unit_ID_interstitial));
+		// Prepare an Interstitial Ad Listener
+		interstitial.setAdListener(new AdListener() {
+
+			public void onAdLoaded() {
+				Log.d("JITZ","add loaded");
+				// Call displayInterstitial() function
+				displayAdd();
+
+			}
+		});
+
+		newAdview.setAdListener(new AdListener() {
+			@Override
+			public void onAdLoaded() {
+				// Code to be executed when an ad finishes loading.
+				Log.d("JKS","onAdLoaded");
+			}
+
+			@Override
+			public void onAdFailedToLoad(int errorCode) {
+				// Code to be executed when an ad request fails.
+
+				Log.d("JKS","onAdFailedToLoad error= "+errorCode);
+				if(retry >0)
+				{
+					newAdview.loadAd(newAdReq);
+					retry--;
+				}
+			}
+
+			@Override
+			public void onAdOpened() {
+				// Code to be executed when an ad opens an overlay that
+				// covers the screen.
+				Log.d("JKS","onAdOpened");
+			}
+
+			@Override
+			public void onAdLeftApplication() {
+				// Code to be executed when the user has left the app.
+				Log.d("JKS","onAdLeftApplication");
+			}
+
+			@Override
+			public void onAdClosed() {
+				// Code to be executed when when the user is about to return
+				// to the application after tapping on an ad.
+				Log.d("JKS","onAdclosed");
+			}
+		});
+		//AdRequest newAdReq = new AdRequest.Builder().addTestDevice("548C643D6A36F2D96EE1BD44A4CB5794").build();
+		newAdview.loadAd(newAdReq);
+	}
+	private void displayAdd()
+	{
+		if (interstitial.isLoaded()) {
+			interstitial.show();
+		}
+
 	}
 	private void addquoteToFav(int id) throws IOException
 	{
@@ -478,6 +544,16 @@ public class QuoteActivityMain extends Activity  {
 	public void putQuote_xml() throws InterruptedException {
 
 		int id = 0;
+		quoteCount++;
+		if(quoteCount % INTERSTITIAL_ADD_DISPLAY_COUNT == 0)
+		{
+
+			AdRequest newAdReq = new AdRequest.Builder()
+			.build();
+
+			// Load ads into Interstitial Ads
+			interstitial.loadAd(newAdReq);
+		}
 		text_quote.setText("Cannot Display Quotes Right Now;");
 		// TODO optimise the koothara code below
 		if(viewFav == true){

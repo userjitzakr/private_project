@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-     xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     package="com.jaApps.quotes"
-    android:versionCode="3"
-    android:versionName="1.0.2" >
+    android:versionCode="4"
+    android:versionName="1.0.3" >
 
     <uses-sdk
         android:minSdkVersion="12"
-        android:targetSdkVersion="21" />
+        android:targetSdkVersion="22" />
 
-    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -32,8 +34,10 @@
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize|uiMode|smallestScreenSize"
             android:theme="@android:style/Theme.Translucent" >
         </activity>
-        <meta-data android:name="com.google.android.gms.version"
-      android:value="@integer/google_play_services_version" />
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
     </application>
 
 </manifest>
