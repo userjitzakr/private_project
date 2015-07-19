@@ -70,7 +70,8 @@ public class MainActivity extends Activity {
 			}
 			else
 			{
-				webView.loadUrl("http://192.168.1.102/php/quotes.php");
+				webView.loadUrl("https://play.google.com/apps/publish/?dev_acc=06275214020653525287");
+				//webView.loadUrl("https://dividely.com/");
 				//I have included web permissions in the AndroidManifest.xml
 				webView.setWebChromeClient(new WebChromeClient());
 				WebSettings webSettings = webView.getSettings();
@@ -84,6 +85,9 @@ public class MainActivity extends Activity {
 		}
 	}	
 private boolean isServerUp() {
+	if(true)
+	return true;
+	else {
 	try {
 		InetAddress ina = InetAddress.getByName("192.168.1.102");
 		if(ina.isReachable(3000)) {
@@ -94,6 +98,7 @@ private boolean isServerUp() {
 		}
 	} catch (IOException ioe) {
 		ioe.printStackTrace();
+	}
 	}
 	return false;
 }
