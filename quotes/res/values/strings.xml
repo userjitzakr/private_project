@@ -3,8 +3,15 @@
 
     <string name="app_name">Quotes</string>
     <string name="ad_Unit_ID">ca-app-pub-4695095847139423/5098487790</string>
+     <string name="inmobi_property_id">fbbb63e08c6443eb8e1ce0830b1a91a7</string>
+   <!-- <string name="inmobi_property_id">53d0ef05be81426ea33d9e7005a32a94</string> -->
     <string name="ad_Unit_ID_interstitial">ca-app-pub-4695095847139423/6744527790</string>
     <string name="hello_world">Hello world!</string>
+    <string name="cannot_use_quotes">Cannot Display Quote for now</string>
+    <string name="img_desc">image to be used</string>
+    <string name="Favorites">Favorites</string>
+    <string name="Info">Info</string>
+    <string name="Help">Help</string>
     <string name="button_next_text">NEXT</string>
 
 </resources>

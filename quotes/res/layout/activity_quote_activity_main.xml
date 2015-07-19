@@ -1,4 +1,4 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"    
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:ads="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/rel_layout"
@@ -20,7 +20,7 @@
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
             android:layout_marginTop="65dp"
-            android:text="Cannot Display Quote for now"
+            android:text="@string/cannot_use_quotes"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="#ffffff" />
     </LinearLayout>
@@ -30,8 +30,9 @@
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:content="@+id/contentLayout"
-        android:gravity="left"
+        android:gravity="start"
         android:handle="@+id/slideHandleButton"
         android:orientation="horizontal"
         android:padding="10dip" >
@@ -40,7 +41,6 @@
             android:id="@+id/slideHandleButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
             android:background="@drawable/closearrow" >
         </Button>
 
@@ -49,7 +49,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="#333333"
-            android:gravity="left"
+            android:gravity="start"
             android:orientation="vertical"
             android:padding="10dip" >
 
@@ -58,14 +58,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
                 android:background="@android:color/transparent"
-                android:text="Favorites "
+                android:text="@string/Favorites"
                 android:textColor="#ffffff" >
             </Button>
 
             <ImageView
                 android:id="@+id/imageView1"
+                android:contentDescription="@string/img_desc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="10dp"
@@ -76,14 +78,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
                 android:background="@android:color/transparent"
-                android:text="Info "
+                android:text="@string/Info"
                 android:textColor="#ffffff" >
             </Button>
 
             <ImageView
                 android:id="@+id/imageView2"
+                android:contentDescription="@string/img_desc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="10dp"
@@ -94,14 +98,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
                 android:background="@android:color/transparent"
-                android:text="Help "
+                android:text="@string/Help"
                 android:textColor="#ffffff" >
             </Button>
 
             <ImageView
                 android:id="@+id/imageView3"
+                android:contentDescription="@string/img_desc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="10dp"
@@ -112,6 +118,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="50dp" />
         </LinearLayout>
     </SlidingDrawer>
@@ -122,6 +129,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:background="@drawable/not_favorite" />
 
     <Button
@@ -130,17 +138,30 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" 
         android:background="@drawable/share" />
 
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
         android:layout_above="@+id/button_favorite"
         android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" 
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp" 
         ads:adSize="BANNER"
         ads:adUnitId="@string/ad_Unit_ID" >
     </com.google.android.gms.ads.AdView>
+
+    <com.inmobi.monetization.IMBanner
+        android:id="@+id/bannerView"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp" 
+        android:layout_width="320dp"
+        android:layout_height="50dp"
+        android:layout_above="@+id/button_favorite"
+        adSize="15"
+        appId="@string/inmobi_property_id" />
 
 </RelativeLayout>

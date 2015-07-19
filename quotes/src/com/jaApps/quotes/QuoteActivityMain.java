@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Random;
 
 import org.apache.http.HttpEntity;
@@ -31,7 +32,10 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -44,10 +48,19 @@ import android.widget.SlidingDrawer.OnDrawerCloseListener;
 import android.widget.SlidingDrawer.OnDrawerOpenListener;
 import android.widget.TextView;
 
+//Admob
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
+
+
+
+//inMobi
+import com.inmobi.commons.InMobi;
+import com.inmobi.monetization.IMBanner;
+import com.inmobi.monetization.IMErrorCode;
+import com.inmobi.monetization.IMBannerListener;
 
 @SuppressWarnings("deprecation")
 class Quotes
@@ -56,7 +69,16 @@ class Quotes
 	public int id;
 	public String id_s;
 }
+class Constants {
+	// Please make sure the ENV value is qa, this token will be replaced at compile time (both in ant and eclipse)
+	// If you want to use this in development and customize the ENV, go change the build_replace_env.xml and build_restore_env.xml 
+	// builders
+	public static int ENV_CONFIGURATIONS = R.raw.slots;
 
+	public static final String AD_FORMAT_KEY = "kIMAdMAdFormat";
+	public static final String TITLE_KEY = "kIMAdMAdTitle";
+	public static final String TYPE_KEY = "kIMAdMAdType";
+}
 public class QuoteActivityMain extends Activity  {
 	public JSONArray jArray;
 	public TextView text_quote;
@@ -79,6 +101,12 @@ public class QuoteActivityMain extends Activity  {
 	static final int TOTAL_QUOTE_SIZE = 100;
 	static final int INTERSTITIAL_ADD_DISPLAY_COUNT = 10;
 	static final int INVALID_ID = -11;
+	public static final int AD_REQUEST_SUCCEEDED = 101;
+	public static final int AD_REQUEST_FAILED = 102;
+	public static final int ON_SHOW_MODAL_AD = 103;
+	public static final int ON_DISMISS_MODAL_AD = 104;
+	public static final int ON_LEAVE_APP = 105;
+	public static final int ON_CLICK = 106;
 
 	public int quoteIndexArray[];
 	public int favQuotes[];
@@ -93,6 +121,10 @@ public class QuoteActivityMain extends Activity  {
 	int quoteCount = 0;
 
 	private InterstitialAd interstitial;
+
+	//inMobi adview
+	private IMBanner bannerAdView;
+	private AdBannerListener adBannerListener;
 	@Override
 	public boolean onTouchEvent(MotionEvent event){
 		switch(event.getAction())
@@ -123,6 +155,36 @@ public class QuoteActivityMain extends Activity  {
 		break;
 		}
 		return super.onTouchEvent(event);
+	}/*
+	private LayoutParams getLayoutParams(String adFormat){
+		final float scale = getResources().getDisplayMetrics().density;
+		adFormat = adFormat.replace("{", "");
+		adFormat = adFormat.replace("}", "");
+		String[] vals = adFormat.split(",",2);
+		int width = (int) (Integer.parseInt(vals[0]) * scale + 0.5f);
+		int height = (int) (Integer.parseInt(vals[1]) * scale + 0.5f);		
+		return new LinearLayout.LayoutParams(width, height);
+	}*/
+
+	private int getAdSize(String adFormat){
+		adFormat = adFormat.replace("{", "");
+		adFormat = adFormat.replace("}", "");
+		String[] vals = adFormat.split(",",2);
+		int width = Integer.parseInt(vals[0]);
+		int height = Integer.parseInt(vals[1]);		
+		if(width == 120 && height == 600){
+			return IMBanner.INMOBI_AD_UNIT_120X600;
+		}
+		if(width == 300 && height == 250){
+			return IMBanner.INMOBI_AD_UNIT_300X250;
+		}
+		if(width == 468 && height == 60){
+			return IMBanner.INMOBI_AD_UNIT_468X60;
+		}
+		if(width == 728 && height == 90){
+			return IMBanner.INMOBI_AD_UNIT_728X90;
+		}
+		return 15;
 	}
 
 	@SuppressWarnings("deprecation")
@@ -131,6 +193,7 @@ public class QuoteActivityMain extends Activity  {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_quote_activity_main);
 
+		InMobi.initialize(this, getResources().getString(R.string.inmobi_property_id));
 		str_quote = "";
 		text_quote = (TextView) findViewById(R.id.textView_text);
 		//text_quote.setTextColor(Color.WHITE);	
@@ -427,6 +490,8 @@ public class QuoteActivityMain extends Activity  {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		/******************************* ADVERTISEMENT SECTION********************/
 		//ADDS
 		final AdView newAdview = (AdView)findViewById(R.id.adView);
 		final AdRequest newAdReq = new AdRequest.Builder().build();
@@ -439,7 +504,7 @@ public class QuoteActivityMain extends Activity  {
 		interstitial.setAdListener(new AdListener() {
 
 			public void onAdLoaded() {
-				Log.d("JITZ","add loaded");
+				Log.d("JKS","add loaded");
 				// Call displayInterstitial() function
 				displayAdd();
 
@@ -458,11 +523,15 @@ public class QuoteActivityMain extends Activity  {
 				// Code to be executed when an ad request fails.
 
 				Log.d("JKS","onAdFailedToLoad error= "+errorCode);
-				if(retry >0)
-				{
-					newAdview.loadAd(newAdReq);
-					retry--;
-				}
+
+				bannerAdView = (IMBanner)findViewById(R.id.bannerView);
+				bannerAdView.setAppId(getResources().getString(R.string.inmobi_property_id));
+				
+				bannerAdView.setAdSize(getAdSize("{320,50}"));
+				adBannerListener = new AdBannerListener();
+				bannerAdView.setIMBannerListener(adBannerListener);
+				bannerAdView.loadBanner();
+				
 			}
 
 			@Override
@@ -485,8 +554,10 @@ public class QuoteActivityMain extends Activity  {
 				Log.d("JKS","onAdclosed");
 			}
 		});
-		//AdRequest newAdReq = new AdRequest.Builder().addTestDevice("548C643D6A36F2D96EE1BD44A4CB5794").build();
+		
 		newAdview.loadAd(newAdReq);
+		/******************************* ADVERTISEMENT SECTION********************/
+
 	}
 	private void displayAdd()
 	{
@@ -772,4 +843,100 @@ public class QuoteActivityMain extends Activity  {
 
 		return ret_size;
 	}
+	private Handler handler = new Handler(){
+
+		@Override
+		public void handleMessage(Message msg) {
+			switch(msg.what){
+			case AD_REQUEST_SUCCEEDED:
+				Log.d("JKS","Loading inmobi ads");
+				break;
+			case AD_REQUEST_FAILED:
+				IMErrorCode eCode = (IMErrorCode) msg.obj;
+				Log.e("JKS","failed to load inmobi ads : " + eCode);
+				
+				break;
+			case ON_SHOW_MODAL_AD:
+				Log.d("JKS","Ad on show ad screen");
+				break;
+			case ON_DISMISS_MODAL_AD:
+				Log.d("JKS","ad on mismatch ad screen");
+				break;
+			case ON_LEAVE_APP:
+				Log.d("JKS","onleaveapplication");
+				break;
+			case ON_CLICK :
+				Log.d("JKS","clicked");
+				break;								
+			}
+			super.handleMessage(msg);
+		}		
+	};
+
+	class AdBannerListener implements IMBannerListener{
+		@Override
+		public void onBannerInteraction(IMBanner arg0, Map<String, String> arg1) {
+			// no-op
+		}
+
+		@Override
+		public void onBannerRequestFailed(IMBanner arg0, IMErrorCode eCode) {
+			Message msg = handler.obtainMessage(AD_REQUEST_FAILED);
+			msg.obj = eCode;
+			handler.sendMessage(msg);		
+		}
+
+		@Override
+		public void onBannerRequestSucceeded(IMBanner arg0) {
+			handler.sendEmptyMessage(AD_REQUEST_SUCCEEDED);
+		}
+
+		@Override
+		public void onDismissBannerScreen(IMBanner arg0) {
+			handler.sendEmptyMessage(ON_DISMISS_MODAL_AD);
+		}
+
+		@Override
+		public void onLeaveApplication(IMBanner arg0) {
+			handler.sendEmptyMessage(ON_LEAVE_APP);			
+		}
+
+		@Override
+		public void onShowBannerScreen(IMBanner arg0) {
+			handler.sendEmptyMessage(ON_SHOW_MODAL_AD);
+
+		}			
+	}
+
+	class AdRefreshCounter extends CountDownTimer {
+		TextView counter;
+		public TextView getCounter() {
+			return counter;
+		}
+
+		public void setCounter(TextView counter) {
+			this.counter = counter;
+		}
+
+		public AdRefreshCounter(long millisInFuture, long countDownInterval) {
+			super(millisInFuture, countDownInterval);
+		}
+
+		public void onFinish() {
+
+		}
+
+		@Override
+		public void onTick(long millisUntilFinished) {
+			String countValue = (String) counter.getText();
+			int count = Integer.parseInt(countValue);
+			count--;
+
+			if(count <= 0)
+				count = 60;
+
+			counter.setText(Integer.toString(count));
+		}
+	}
+
 }
