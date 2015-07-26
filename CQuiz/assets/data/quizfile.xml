@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    <question>
+
+        <catagory>0</catagory>
+
+        <no></no>
+
+        <q></q>
+
+        <optiona></optiona>
+
+        <optionb></optionb>
+
+        <optionc></optionc>
+
+        <optiond></optiond>
+
+        <ans></ans>
+    </question>
+
+
+ -->
+<questions>
+
+    <question>
+
+        <catagory>0</catagory>
+
+        <no>1</no>
+
+        <q>49 : 56 = n : 48, Solved for n?</q>
+
+        <optiona>42</optiona>
+
+        <optionb>45</optionb>
+
+        <optionc>25</optionc>
+
+        <optiond>30</optiond>
+
+        <ans>1</ans>
+<info>1</info>
+
+        <data>Galena, also called lead glance, is the natural mineral form of lead(II) sulfide. It is the most important ore of lead and an important source of silver. Galena is one of the most abundant and widely distributed sulfide minerals.</data>
+
+
+    </question>
+</questions>
