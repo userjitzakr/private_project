@@ -92,7 +92,7 @@ public class QuoteActivity extends Activity  {
 	static final int MIN_DISTANCE = 150;
 	static final int BTN_FONT_SIZE = 24;
 
-	static final int TOTAL_QUOTE_SIZE = 30;
+	static final int TOTAL_QUOTE_SIZE = 50;
 	static final int INTERSTITIAL_ADD_DISPLAY_COUNT = 10;
 	static final int INVALID_ID = -11;
 	public static final int AD_REQUEST_SUCCEEDED = 101;
