@@ -116,6 +116,11 @@ public class QuoteActivity extends Activity  {
 
 	private InterstitialAd interstitial;
 
+	//database to store the data
+	ArrayList<Quotes> quoteBase = null;
+	XmlPullParserFactory pullParserFactory;
+	XmlPullParser parser;
+    InputStream in_s;
 
 	@Override
 	public boolean onTouchEvent(MotionEvent event){
@@ -184,6 +189,27 @@ public class QuoteActivity extends Activity  {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_quote);
+		
+		// load data
+		// this function gets the quote from an internal xml file "file:///android_asset/data/quotes.xml
+		
+		try {
+			pullParserFactory = XmlPullParserFactory.newInstance();
+			parser = pullParserFactory.newPullParser();
+
+			in_s = getApplicationContext().getAssets().open("data/apj_quotes.xml");
+			parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
+			parser.setInput(in_s, null);
+
+			parseXML_toLoad(parser,0);
+
+		} catch (XmlPullParserException e) {
+
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		//InMobi.initialize(this, getResources().getString(R.string.inmobi_property_id));
 		str_quote = "";
@@ -655,44 +681,36 @@ public class QuoteActivity extends Activity  {
 			id = quoteIndexArray[quoteIndex];
 
 		}
+		Quotes quote = quoteBase.get(id);
+		text_quote.setTextColor(Color.WHITE);	
+		text_quote.setText(quote.msg);
+		currentQuoteId = id;
+		// for animation
+		if(toLeft)
+			text_quote.startAnimation(animRightToLeft);
+		else
+			text_quote.startAnimation(animLeftToRight);
+		if(favQuotes[currentQuoteId] == 1)
+			button_favorite.setBackgroundResource(R.drawable.favorite);
+		else
+			button_favorite.setBackgroundResource(R.drawable.not_favorite);
 
-		// this function gets the quote from an internal xml file "file:///android_asset/data/quotes.xml
-		XmlPullParserFactory pullParserFactory;
-		try {
-			pullParserFactory = XmlPullParserFactory.newInstance();
-			XmlPullParser parser = pullParserFactory.newPullParser();
 
-			InputStream in_s = getApplicationContext().getAssets().open("data/apj_quotes.xml");
-			parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
-			parser.setInput(in_s, null);
-
-			parseXML(parser,id);
-
-		} catch (XmlPullParserException e) {
-
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
-	private void parseXML(XmlPullParser parser, int id) throws XmlPullParserException,IOException
+	private void parseXML_toLoad(XmlPullParser parser, int id) throws XmlPullParserException,IOException
 	{
-
-		ArrayList<Quotes> products = null;
 		int eventType = parser.getEventType();
 		Quotes currentQuote = null;
-
 		while (eventType != XmlPullParser.END_DOCUMENT){			
 			String name = null;
 			switch (eventType){
 			case XmlPullParser.START_DOCUMENT:
-				products = new ArrayList<Quotes>();
+				quoteBase = new ArrayList<Quotes>();
 				break;
 			case XmlPullParser.START_TAG:
 				name = parser.getName();	
 
-				if (name.equalsIgnoreCase("quotes")){
+				if (name.equalsIgnoreCase("quote")){
 					currentQuote = new Quotes();
 				} else if (currentQuote != null){
 					if (name.equalsIgnoreCase("msg")){
@@ -703,20 +721,7 @@ public class QuoteActivity extends Activity  {
 
 						currentQuote.id_s = parser.nextText();
 						currentQuote.id = Integer.parseInt(currentQuote.id_s);
-						if (id == currentQuote.id) {
-							text_quote.setTextColor(Color.WHITE);	
-							text_quote.setText(currentQuote.msg);
-							currentQuoteId = id;
-							// for animation
-							if(toLeft)
-								text_quote.startAnimation(animRightToLeft);
-							else
-								text_quote.startAnimation(animLeftToRight);
-							if(favQuotes[currentQuoteId] == 1)
-								button_favorite.setBackgroundResource(R.drawable.favorite);
-							else
-								button_favorite.setBackgroundResource(R.drawable.not_favorite);
-						}
+						
 					}
 				}
 
@@ -724,12 +729,13 @@ public class QuoteActivity extends Activity  {
 			case XmlPullParser.END_TAG:
 				name = parser.getName();
 				if (name.equalsIgnoreCase("quote") && currentQuote != null){
-					products.add(currentQuote);
+					quoteBase.add(currentQuote);
 				} 
 			}
 
 			eventType = parser.next();
 		}
+
 	}
 	public void putQuote() throws InterruptedException {
 		// TODO Auto-generated method stub
