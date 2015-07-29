@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:ads="http://schemas.android.com/apk/res-auto"
     package="com.jaApps.quotes"
-    android:versionCode="4"
+    android:versionCode="5"
     android:versionName="1.0.3" >
 
     <uses-sdk

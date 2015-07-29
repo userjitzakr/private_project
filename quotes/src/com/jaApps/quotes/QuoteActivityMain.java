@@ -27,6 +27,7 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
+import android.R.bool;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
@@ -98,7 +99,7 @@ public class QuoteActivityMain extends Activity  {
 	static final int MIN_DISTANCE = 150;
 	static final int BTN_FONT_SIZE = 24;
 
-	static final int TOTAL_QUOTE_SIZE = 100;
+	static final int TOTAL_QUOTE_SIZE = 150;
 	static final int INTERSTITIAL_ADD_DISPLAY_COUNT = 10;
 	static final int INVALID_ID = -11;
 	public static final int AD_REQUEST_SUCCEEDED = 101;
@@ -122,6 +123,13 @@ public class QuoteActivityMain extends Activity  {
 
 	private InterstitialAd interstitial;
 
+	//database to store the data
+	ArrayList<Quotes> quoteBase = null;
+	XmlPullParserFactory pullParserFactory;
+	XmlPullParser parser;
+    InputStream in_s;
+    boolean dataLoaded = false;
+
 	//inMobi adview
 	private IMBanner bannerAdView;
 	private AdBannerListener adBannerListener;
@@ -142,7 +150,8 @@ public class QuoteActivityMain extends Activity  {
 			//		Toast.makeText(this, "swiped", Toast.LENGTH_SHORT).show();
 			try {
 				//putQuote();
-				putQuote_xml();
+				if(dataLoaded == true)
+					putQuote_xml();
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -192,17 +201,37 @@ public class QuoteActivityMain extends Activity  {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_quote_activity_main);
+		// load data
+		// this function gets the quote from an internal xml file "file:///android_asset/data/quotes.xml
+		
+		try {
+			pullParserFactory = XmlPullParserFactory.newInstance();
+			parser = pullParserFactory.newPullParser();
 
+			in_s = getApplicationContext().getAssets().open("data/quotes.xml");
+			parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
+			parser.setInput(in_s, null);
+			parseXML_toLoad(parser,0);
+
+		} catch (XmlPullParserException e) {
+
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		//InMobi.initialize(this, getResources().getString(R.string.inmobi_property_id));
 		InMobi.initialize(this, getResources().getString(R.string.inmobi_property_id));
 		str_quote = "";
 		text_quote = (TextView) findViewById(R.id.textView_text);
 		//text_quote.setTextColor(Color.WHITE);	
 
 		// initialize favQuotes array with zeros
-		favQuotes = new int[100];
+		favQuotes = new int[TOTAL_QUOTE_SIZE];
 		for(int i=0 ; i < TOTAL_QUOTE_SIZE; i++)
 			favQuotes[i] = 0;
-		quoteIndexArray = new int[100];
+		quoteIndexArray = new int[TOTAL_QUOTE_SIZE];
 		for(int i=0 ; i < TOTAL_QUOTE_SIZE; i++)
 		{
 			Random rand = new Random();
@@ -248,7 +277,8 @@ public class QuoteActivityMain extends Activity  {
 				}
 				try {
 					//putQuote();
-					putQuote_xml();
+					if(dataLoaded == true)
+						putQuote_xml();
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -485,7 +515,8 @@ public class QuoteActivityMain extends Activity  {
 		// WHEN APP IS STARTED THE BELOW PORTION OF CODE GETS CALLED TO GET THE FIRST QUOTE 
 		try {
 			//			putQuote();
-			putQuote_xml();
+			if(dataLoaded == true)
+				putQuote_xml();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -614,6 +645,11 @@ public class QuoteActivityMain extends Activity  {
 	}
 	public void putQuote_xml() throws InterruptedException {
 
+		if(dataLoaded ==false)
+		{
+			Log.d("JKS","data is not loaded; return");
+			return;
+		}
 		int id = 0;
 		quoteCount++;
 		if(quoteCount % INTERSTITIAL_ADD_DISPLAY_COUNT == 0)
@@ -663,44 +699,38 @@ public class QuoteActivityMain extends Activity  {
 			id = quoteIndexArray[quoteIndex];
 
 		}
+		Quotes quote = quoteBase.get(id);
+		text_quote.setTextColor(Color.WHITE);	
+		text_quote.setText(quote.msg);
+		currentQuoteId = id;
+		// for animation
+		if(toLeft)
+			text_quote.startAnimation(animRightToLeft);
+		else
+			text_quote.startAnimation(animLeftToRight);
+		if(favQuotes[currentQuoteId] == 1)
+			button_favorite.setBackgroundResource(R.drawable.favorite);
+		else
+			button_favorite.setBackgroundResource(R.drawable.not_favorite);
 
-		// this function gets the quote from an internal xml file "file:///android_asset/data/quotes.xml
-		XmlPullParserFactory pullParserFactory;
-		try {
-			pullParserFactory = XmlPullParserFactory.newInstance();
-			XmlPullParser parser = pullParserFactory.newPullParser();
 
-			InputStream in_s = getApplicationContext().getAssets().open("data/quotes.xml");
-			parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
-			parser.setInput(in_s, null);
-
-			parseXML(parser,id);
-
-		} catch (XmlPullParserException e) {
-
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
-	private void parseXML(XmlPullParser parser, int id) throws XmlPullParserException,IOException
+	private void parseXML_toLoad(XmlPullParser parser, int id) throws XmlPullParserException,IOException
 	{
-
-		ArrayList<Quotes> products = null;
+		if(dataLoaded == true) return;
+		dataLoaded = true;
 		int eventType = parser.getEventType();
 		Quotes currentQuote = null;
-
 		while (eventType != XmlPullParser.END_DOCUMENT){			
 			String name = null;
 			switch (eventType){
 			case XmlPullParser.START_DOCUMENT:
-				products = new ArrayList<Quotes>();
+				quoteBase = new ArrayList<Quotes>();
 				break;
 			case XmlPullParser.START_TAG:
 				name = parser.getName();	
 
-				if (name.equalsIgnoreCase("quotes")){
+				if (name.equalsIgnoreCase("quote")){
 					currentQuote = new Quotes();
 				} else if (currentQuote != null){
 					if (name.equalsIgnoreCase("msg")){
@@ -711,20 +741,7 @@ public class QuoteActivityMain extends Activity  {
 
 						currentQuote.id_s = parser.nextText();
 						currentQuote.id = Integer.parseInt(currentQuote.id_s);
-						if (id == currentQuote.id) {
-							text_quote.setTextColor(Color.WHITE);	
-							text_quote.setText(currentQuote.msg);
-							currentQuoteId = id;
-							// for animation
-							if(toLeft)
-								text_quote.startAnimation(animRightToLeft);
-							else
-								text_quote.startAnimation(animLeftToRight);
-							if(favQuotes[currentQuoteId] == 1)
-								button_favorite.setBackgroundResource(R.drawable.favorite);
-							else
-								button_favorite.setBackgroundResource(R.drawable.not_favorite);
-						}
+						
 					}
 				}
 
@@ -732,12 +749,14 @@ public class QuoteActivityMain extends Activity  {
 			case XmlPullParser.END_TAG:
 				name = parser.getName();
 				if (name.equalsIgnoreCase("quote") && currentQuote != null){
-					products.add(currentQuote);
+					quoteBase.add(currentQuote);
 				} 
 			}
 
 			eventType = parser.next();
 		}
+		dataLoaded = true;
+
 	}
 	public void putQuote() throws InterruptedException {
 		// TODO Auto-generated method stub
