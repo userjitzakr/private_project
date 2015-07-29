@@ -631,7 +631,8 @@ public class QuizActivity extends Activity {
 
 		Questions data = ques.get(gQuesIndex);
 
-		txt_qno.setText(data.no+".");
+	//	txt_qno.setText(gQuesIndex+1 +". ");
+		txt_qno.setText(" ");
 		txt_question.setText(data.question);
 		txt_optionA.setText(data.optiona);
 		txt_optionB.setText(data.optionb);

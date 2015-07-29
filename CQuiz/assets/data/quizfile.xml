@@ -1,49 +1,23 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- 
-    <question>
-
-        <catagory>0</catagory>
-
-        <no></no>
-
-        <q></q>
-
-        <optiona></optiona>
-
-        <optionb></optionb>
-
-        <optionc></optionc>
-
-        <optiond></optiond>
-
-        <ans></ans>
-    </question>
-
-
- -->
 <questions>
 
-    <question>
-
-        <catagory>0</catagory>
-
-        <no>1</no>
-
-        <q>49 : 56 = n : 48, Solved for n?</q>
-
-        <optiona>42</optiona>
-
-        <optionb>45</optionb>
-
-        <optionc>25</optionc>
-
-        <optiond>30</optiond>
-
-        <ans>1</ans>
+<question>
+<catagory>0</catagory>
+<no>0</no>
+<q>"What will be the output if you compile and execute the following c code ?
+int main(){
+int i=320;
+char *ptr=(char *)&i;
+printf("%d",*ptr);
+return 0;"
+}</q>
+<optiona>320</optiona>
+<optionb>1</optionb>
+<optionc>64</optionc>
+<optiond>compiler error</optiond>
+<ans>3</ans>
 <info>1</info>
+<data>As we know size of int data type is two byte while char pointer can point to one byte at a time. So char pointer is pointing to only the first byte. And its value will be 0100000</data>
+</question>
 
-        <data>Galena, also called lead glance, is the natural mineral form of lead(II) sulfide. It is the most important ore of lead and an important source of silver. Galena is one of the most abundant and widely distributed sulfide minerals.</data>
 
-
-    </question>
 </questions>
