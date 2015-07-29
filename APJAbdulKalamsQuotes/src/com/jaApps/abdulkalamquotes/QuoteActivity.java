@@ -121,6 +121,7 @@ public class QuoteActivity extends Activity  {
 	XmlPullParserFactory pullParserFactory;
 	XmlPullParser parser;
     InputStream in_s;
+    boolean dataLoaded = false;
 
 	@Override
 	public boolean onTouchEvent(MotionEvent event){
@@ -139,7 +140,8 @@ public class QuoteActivity extends Activity  {
 			//		Toast.makeText(this, "swiped", Toast.LENGTH_SHORT).show();
 			try {
 				//putQuote();
-				putQuote_xml();
+				if(dataLoaded == true)
+					putQuote_xml();
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -217,10 +219,10 @@ public class QuoteActivity extends Activity  {
 		//text_quote.setTextColor(Color.WHITE);	
 
 		// initialize favQuotes array with zeros
-		favQuotes = new int[100];
+		favQuotes = new int[TOTAL_QUOTE_SIZE];
 		for(int i=0 ; i < TOTAL_QUOTE_SIZE; i++)
 			favQuotes[i] = 0;
-		quoteIndexArray = new int[100];
+		quoteIndexArray = new int[TOTAL_QUOTE_SIZE];
 		for(int i=0 ; i < TOTAL_QUOTE_SIZE; i++)
 		{
 			Random rand = new Random();
@@ -266,7 +268,8 @@ public class QuoteActivity extends Activity  {
 				}
 				try {
 					//putQuote();
-					putQuote_xml();
+					if(dataLoaded == true)
+						putQuote_xml();
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -503,7 +506,8 @@ public class QuoteActivity extends Activity  {
 		// WHEN APP IS STARTED THE BELOW PORTION OF CODE GETS CALLED TO GET THE FIRST QUOTE 
 		try {
 			//			putQuote();
-			putQuote_xml();
+			if(dataLoaded == true)
+				putQuote_xml();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -573,7 +577,7 @@ public class QuoteActivity extends Activity  {
 			}
 		});
 		
-	//	newAdview.loadAd(newAdReq);
+		newAdview.loadAd(newAdReq);
 		/******************************* ADVERTISEMENT SECTION********************/
 
 	}
@@ -632,6 +636,11 @@ public class QuoteActivity extends Activity  {
 	}
 	public void putQuote_xml() throws InterruptedException {
 
+		if(dataLoaded ==false)
+		{
+			Log.d("JKS","data is not loaded; return");
+			return;
+		}
 		int id = 0;
 		quoteCount++;
 		if(quoteCount % INTERSTITIAL_ADD_DISPLAY_COUNT == 0)
@@ -641,7 +650,7 @@ public class QuoteActivity extends Activity  {
 			.build();
 
 			// Load ads into Interstitial Ads
-		//	interstitial.loadAd(newAdReq);
+			interstitial.loadAd(newAdReq);
 		}
 		text_quote.setText("Cannot Display Quotes Right Now;");
 		// TODO optimise the koothara code below
@@ -699,6 +708,8 @@ public class QuoteActivity extends Activity  {
 	}
 	private void parseXML_toLoad(XmlPullParser parser, int id) throws XmlPullParserException,IOException
 	{
+		if(dataLoaded == true) return;
+		dataLoaded = true;
 		int eventType = parser.getEventType();
 		Quotes currentQuote = null;
 		while (eventType != XmlPullParser.END_DOCUMENT){			
@@ -735,6 +746,7 @@ public class QuoteActivity extends Activity  {
 
 			eventType = parser.next();
 		}
+		dataLoaded = true;
 
 	}
 	public void putQuote() throws InterruptedException {
