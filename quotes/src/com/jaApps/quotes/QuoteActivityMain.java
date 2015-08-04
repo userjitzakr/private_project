@@ -27,7 +27,6 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
-import android.R.bool;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
@@ -40,10 +39,12 @@ import android.os.Message;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnTouchListener;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.SlidingDrawer;
 import android.widget.SlidingDrawer.OnDrawerCloseListener;
 import android.widget.SlidingDrawer.OnDrawerOpenListener;
@@ -220,6 +221,14 @@ public class QuoteActivityMain extends Activity  {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		ScrollView scroll = (ScrollView) findViewById(R.id.scrl_quesion);
+		scroll.setOnTouchListener(new OnTouchListener() {
+			@Override	
+			public boolean onTouch(View v, MotionEvent event) {
+				onTouchEvent(event);
+				return false;
+			}
+		});
 
 		//InMobi.initialize(this, getResources().getString(R.string.inmobi_property_id));
 		InMobi.initialize(this, getResources().getString(R.string.inmobi_property_id));
