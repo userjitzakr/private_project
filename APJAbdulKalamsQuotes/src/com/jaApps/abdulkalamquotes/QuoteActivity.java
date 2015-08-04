@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Map;
 import java.util.Random;
 
 import org.apache.http.HttpEntity;
@@ -27,22 +26,22 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.os.Environment;
-import android.os.Handler;
-import android.os.Message;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnTouchListener;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.SlidingDrawer;
 import android.widget.SlidingDrawer.OnDrawerCloseListener;
 import android.widget.SlidingDrawer.OnDrawerOpenListener;
@@ -120,8 +119,8 @@ public class QuoteActivity extends Activity  {
 	ArrayList<Quotes> quoteBase = null;
 	XmlPullParserFactory pullParserFactory;
 	XmlPullParser parser;
-    InputStream in_s;
-    boolean dataLoaded = false;
+	InputStream in_s;
+	boolean dataLoaded = false;
 
 	@Override
 	public boolean onTouchEvent(MotionEvent event){
@@ -165,36 +164,36 @@ public class QuoteActivity extends Activity  {
 		return new LinearLayout.LayoutParams(width, height);
 	}*/
 
-//	private int getAdSize(String adFormat){
-//		adFormat = adFormat.replace("{", "");
-//		adFormat = adFormat.replace("}", "");
-//		String[] vals = adFormat.split(",",2);
-//		int width = Integer.parseInt(vals[0]);
-//		int height = Integer.parseInt(vals[1]);		
-//		if(width == 120 && height == 600){
-//			return IMBanner.INMOBI_AD_UNIT_120X600;
-//		}
-//		if(width == 300 && height == 250){
-//			return IMBanner.INMOBI_AD_UNIT_300X250;
-//		}
-//		if(width == 468 && height == 60){
-//			return IMBanner.INMOBI_AD_UNIT_468X60;
-//		}
-//		if(width == 728 && height == 90){
-//			return IMBanner.INMOBI_AD_UNIT_728X90;
-//		}
-//		return 15;
-//	}
+	//	private int getAdSize(String adFormat){
+	//		adFormat = adFormat.replace("{", "");
+	//		adFormat = adFormat.replace("}", "");
+	//		String[] vals = adFormat.split(",",2);
+	//		int width = Integer.parseInt(vals[0]);
+	//		int height = Integer.parseInt(vals[1]);		
+	//		if(width == 120 && height == 600){
+	//			return IMBanner.INMOBI_AD_UNIT_120X600;
+	//		}
+	//		if(width == 300 && height == 250){
+	//			return IMBanner.INMOBI_AD_UNIT_300X250;
+	//		}
+	//		if(width == 468 && height == 60){
+	//			return IMBanner.INMOBI_AD_UNIT_468X60;
+	//		}
+	//		if(width == 728 && height == 90){
+	//			return IMBanner.INMOBI_AD_UNIT_728X90;
+	//		}
+	//		return 15;
+	//	}
 
 	@SuppressWarnings("deprecation")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_quote);
-		
+
 		// load data
 		// this function gets the quote from an internal xml file "file:///android_asset/data/quotes.xml
-		
+
 		try {
 			pullParserFactory = XmlPullParserFactory.newInstance();
 			parser = pullParserFactory.newPullParser();
@@ -212,6 +211,15 @@ public class QuoteActivity extends Activity  {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		ScrollView scroll = (ScrollView) findViewById(R.id.scrl_quesion);
+		scroll.setOnTouchListener(new OnTouchListener() {
+			@SuppressLint("ClickableViewAccessibility")
+			@Override	
+			public boolean onTouch(View v, MotionEvent event) {
+				onTouchEvent(event);
+				return false;
+			}
+		});
 
 		//InMobi.initialize(this, getResources().getString(R.string.inmobi_property_id));
 		str_quote = "";
@@ -286,8 +294,9 @@ public class QuoteActivity extends Activity  {
 			public void onClick(View arg0) {
 
 				TextView info = (TextView)findViewById(R.id.textView_info_help);
-				info.setText("An app to display inspirational quotes which helps to make the mind peaceful." +
-						" Developed by jaApps"
+				info.setText("Avul Pakir Jainulabdeen Abdul Kalam (15 October 1931 – 27 July 2015) was the 11th President of India from 2002 to 2007. A career scientist turned reluctant politician, Kalam was born and raised in Rameswaram, Tamil Nadu and studied physics and aerospace engineering. He spent the next four decades as a scientist and science administrator, mainly at the Defence Research and Development Organisation (DRDO) and Indian Space Research Organisation (ISRO) and was intimately involved in India's civilian space program and military missile development efforts. He thus came to be known as the Missile Man of India for his work on the development of ballistic missile and launch vehicle technology."+ 
+"Kalam was elected President of India in 2002 with the support of both the ruling Bharatiya Janata Party and the opposition Indian National Congress. After serving a term of five years, he returned to his civilian life of education, writing and public service. He received several prestigious awards, including the Bharat Ratna, India's highest civilian honour."+
+"This app contains few of his thoughts. It will help us to reach success."
 						);
 				info.startAnimation(animFadein2);
 			}
@@ -512,12 +521,12 @@ public class QuoteActivity extends Activity  {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		/******************************* ADVERTISEMENT SECTION********************/
 		//ADDS
 		final AdView newAdview = (AdView)findViewById(R.id.adView);
-		final AdRequest newAdReq = new AdRequest.Builder().build();
-		//final AdRequest newAdReq = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).addTestDevice("548C643D6A36F2D96EE1BD44A4CB5794").build();
+		//final AdRequest newAdReq = new AdRequest.Builder().build();
+		final AdRequest newAdReq = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).addTestDevice("548C643D6A36F2D96EE1BD44A4CB5794").build();
 		// Prepare the Interstitial Ad
 		interstitial = new InterstitialAd(QuoteActivity.this);
 		// Insert the Ad Unit ID
@@ -546,14 +555,14 @@ public class QuoteActivity extends Activity  {
 
 				Log.d("JKS","onAdFailedToLoad error= "+errorCode);
 
-//				bannerAdView = (IMBanner)findViewById(R.id.bannerView);
-//				bannerAdView.setAppId(getResources().getString(R.string.inmobi_property_id));
-//				
-//				bannerAdView.setAdSize(getAdSize("{320,50}"));
-//				adBannerListener = new AdBannerListener();
-//				bannerAdView.setIMBannerListener(adBannerListener);
-//				bannerAdView.loadBanner();
-				
+				//				bannerAdView = (IMBanner)findViewById(R.id.bannerView);
+				//				bannerAdView.setAppId(getResources().getString(R.string.inmobi_property_id));
+				//				
+				//				bannerAdView.setAdSize(getAdSize("{320,50}"));
+				//				adBannerListener = new AdBannerListener();
+				//				bannerAdView.setIMBannerListener(adBannerListener);
+				//				bannerAdView.loadBanner();
+
 			}
 
 			@Override
@@ -576,7 +585,7 @@ public class QuoteActivity extends Activity  {
 				Log.d("JKS","onAdclosed");
 			}
 		});
-		
+
 		newAdview.loadAd(newAdReq);
 		/******************************* ADVERTISEMENT SECTION********************/
 
@@ -732,7 +741,7 @@ public class QuoteActivity extends Activity  {
 
 						currentQuote.id_s = parser.nextText();
 						currentQuote.id = Integer.parseInt(currentQuote.id_s);
-						
+
 					}
 				}
 
@@ -853,100 +862,100 @@ public class QuoteActivity extends Activity  {
 
 		return ret_size;
 	}
-//	private Handler handler = new Handler(){
-//
-//		@Override
-//		public void handleMessage(Message msg) {
-//			switch(msg.what){
-//			case AD_REQUEST_SUCCEEDED:
-//				Log.d("JKS","Loading inmobi ads");
-//				break;
-//			case AD_REQUEST_FAILED:
-//				IMErrorCode eCode = (IMErrorCode) msg.obj;
-//				Log.e("JKS","failed to load inmobi ads : " + eCode);
-//				
-//				break;
-//			case ON_SHOW_MODAL_AD:
-//				Log.d("JKS","Ad on show ad screen");
-//				break;
-//			case ON_DISMISS_MODAL_AD:
-//				Log.d("JKS","ad on mismatch ad screen");
-//				break;
-//			case ON_LEAVE_APP:
-//				Log.d("JKS","onleaveapplication");
-//				break;
-//			case ON_CLICK :
-//				Log.d("JKS","clicked");
-//				break;								
-//			}
-//			super.handleMessage(msg);
-//		}		
-//	};
-//
-//	class AdBannerListener implements IMBannerListener{
-//		@Override
-//		public void onBannerInteraction(IMBanner arg0, Map<String, String> arg1) {
-//			// no-op
-//		}
-//
-//		@Override
-//		public void onBannerRequestFailed(IMBanner arg0, IMErrorCode eCode) {
-//			Message msg = handler.obtainMessage(AD_REQUEST_FAILED);
-//			msg.obj = eCode;
-//			handler.sendMessage(msg);		
-//		}
-//
-//		@Override
-//		public void onBannerRequestSucceeded(IMBanner arg0) {
-//			handler.sendEmptyMessage(AD_REQUEST_SUCCEEDED);
-//		}
-//
-//		@Override
-//		public void onDismissBannerScreen(IMBanner arg0) {
-//			handler.sendEmptyMessage(ON_DISMISS_MODAL_AD);
-//		}
-//
-//		@Override
-//		public void onLeaveApplication(IMBanner arg0) {
-//			handler.sendEmptyMessage(ON_LEAVE_APP);			
-//		}
-//
-//		@Override
-//		public void onShowBannerScreen(IMBanner arg0) {
-//			handler.sendEmptyMessage(ON_SHOW_MODAL_AD);
-//
-//		}			
-//	}
-//
-//	class AdRefreshCounter extends CountDownTimer {
-//		TextView counter;
-//		public TextView getCounter() {
-//			return counter;
-//		}
-//
-//		public void setCounter(TextView counter) {
-//			this.counter = counter;
-//		}
-//
-//		public AdRefreshCounter(long millisInFuture, long countDownInterval) {
-//			super(millisInFuture, countDownInterval);
-//		}
-//
-//		public void onFinish() {
-//
-//		}
-//
-//		@Override
-//		public void onTick(long millisUntilFinished) {
-//			String countValue = (String) counter.getText();
-//			int count = Integer.parseInt(countValue);
-//			count--;
-//
-//			if(count <= 0)
-//				count = 60;
-//
-//			counter.setText(Integer.toString(count));
-//		}
-//	}
+	//	private Handler handler = new Handler(){
+	//
+	//		@Override
+	//		public void handleMessage(Message msg) {
+	//			switch(msg.what){
+	//			case AD_REQUEST_SUCCEEDED:
+	//				Log.d("JKS","Loading inmobi ads");
+	//				break;
+	//			case AD_REQUEST_FAILED:
+	//				IMErrorCode eCode = (IMErrorCode) msg.obj;
+	//				Log.e("JKS","failed to load inmobi ads : " + eCode);
+	//				
+	//				break;
+	//			case ON_SHOW_MODAL_AD:
+	//				Log.d("JKS","Ad on show ad screen");
+	//				break;
+	//			case ON_DISMISS_MODAL_AD:
+	//				Log.d("JKS","ad on mismatch ad screen");
+	//				break;
+	//			case ON_LEAVE_APP:
+	//				Log.d("JKS","onleaveapplication");
+	//				break;
+	//			case ON_CLICK :
+	//				Log.d("JKS","clicked");
+	//				break;								
+	//			}
+	//			super.handleMessage(msg);
+	//		}		
+	//	};
+	//
+	//	class AdBannerListener implements IMBannerListener{
+	//		@Override
+	//		public void onBannerInteraction(IMBanner arg0, Map<String, String> arg1) {
+	//			// no-op
+	//		}
+	//
+	//		@Override
+	//		public void onBannerRequestFailed(IMBanner arg0, IMErrorCode eCode) {
+	//			Message msg = handler.obtainMessage(AD_REQUEST_FAILED);
+	//			msg.obj = eCode;
+	//			handler.sendMessage(msg);		
+	//		}
+	//
+	//		@Override
+	//		public void onBannerRequestSucceeded(IMBanner arg0) {
+	//			handler.sendEmptyMessage(AD_REQUEST_SUCCEEDED);
+	//		}
+	//
+	//		@Override
+	//		public void onDismissBannerScreen(IMBanner arg0) {
+	//			handler.sendEmptyMessage(ON_DISMISS_MODAL_AD);
+	//		}
+	//
+	//		@Override
+	//		public void onLeaveApplication(IMBanner arg0) {
+	//			handler.sendEmptyMessage(ON_LEAVE_APP);			
+	//		}
+	//
+	//		@Override
+	//		public void onShowBannerScreen(IMBanner arg0) {
+	//			handler.sendEmptyMessage(ON_SHOW_MODAL_AD);
+	//
+	//		}			
+	//	}
+	//
+	//	class AdRefreshCounter extends CountDownTimer {
+	//		TextView counter;
+	//		public TextView getCounter() {
+	//			return counter;
+	//		}
+	//
+	//		public void setCounter(TextView counter) {
+	//			this.counter = counter;
+	//		}
+	//
+	//		public AdRefreshCounter(long millisInFuture, long countDownInterval) {
+	//			super(millisInFuture, countDownInterval);
+	//		}
+	//
+	//		public void onFinish() {
+	//
+	//		}
+	//
+	//		@Override
+	//		public void onTick(long millisUntilFinished) {
+	//			String countValue = (String) counter.getText();
+	//			int count = Integer.parseInt(countValue);
+	//			count--;
+	//
+	//			if(count <= 0)
+	//				count = 60;
+	//
+	//			counter.setText(Integer.toString(count));
+	//		}
+	//	}
 
 }
