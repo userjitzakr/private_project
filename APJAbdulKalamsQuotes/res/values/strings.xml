@@ -4,8 +4,14 @@
     <string name="app_name">APJ Abdul Kalams Quotes</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <!-- 
     <string name="ad_Unit_ID">ca-app-pub-4695095847139423/8280672996</string>
+     -->
+    <string name="ad_Unit_ID">ca-app-pub-2498468757920270/8332606947</string>
+    <!-- 
     <string name="ad_Unit_ID_interstitial">ca-app-pub-4695095847139423/2234139398</string>
+     -->
+    <string name="ad_Unit_ID_interstitial">ca-app-pub-2498468757920270/9809340147</string>
     <string name="cannot_use_quotes">Cannot Display Quote for now</string>
     <string name="img_desc">image to be used</string>
     <string name="Favorites">Favorites</string>
