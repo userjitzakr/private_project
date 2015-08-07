@@ -534,8 +534,8 @@ public class QuoteActivityMain extends Activity  {
 		/******************************* ADVERTISEMENT SECTION********************/
 		//ADDS
 		final AdView newAdview = (AdView)findViewById(R.id.adView);
-		final AdRequest newAdReq = new AdRequest.Builder().build();
-		//final AdRequest newAdReq = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).addTestDevice("548C643D6A36F2D96EE1BD44A4CB5794").build();
+		//final AdRequest newAdReq = new AdRequest.Builder().build();
+		final AdRequest newAdReq = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).addTestDevice("548C643D6A36F2D96EE1BD44A4CB5794").build();
 		// Prepare the Interstitial Ad
 		interstitial = new InterstitialAd(QuoteActivityMain.this);
 		// Insert the Ad Unit ID
@@ -664,8 +664,8 @@ public class QuoteActivityMain extends Activity  {
 		if(quoteCount % INTERSTITIAL_ADD_DISPLAY_COUNT == 0)
 		{
 
-			AdRequest newAdReq = new AdRequest.Builder()
-			.build();
+			//AdRequest newAdReq = new AdRequest.Builder().build();
+			AdRequest newAdReq = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).addTestDevice("548C643D6A36F2D96EE1BD44A4CB5794").build();
 
 			// Load ads into Interstitial Ads
 			interstitial.loadAd(newAdReq);
