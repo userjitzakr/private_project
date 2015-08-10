@@ -241,10 +241,18 @@ public class QuoteActivityMain extends Activity  {
 		for(int i=0 ; i < TOTAL_QUOTE_SIZE; i++)
 			favQuotes[i] = 0;
 		quoteIndexArray = new int[TOTAL_QUOTE_SIZE];
+		int idx = 0;
 		for(int i=0 ; i < TOTAL_QUOTE_SIZE; i++)
 		{
-			Random rand = new Random();
-			quoteIndexArray[i] = rand.nextInt() % TOTAL_QUOTE_SIZE;
+			Random rand;
+			do {
+				rand = new Random();
+				idx = rand.nextInt() % TOTAL_QUOTE_SIZE;
+				if(idx<0) idx *= -1;
+			}
+			
+			while(isIndexAlreadyPresent(idx, i));	
+			quoteIndexArray[i] = idx;
 			if (quoteIndexArray[i] < 0) quoteIndexArray[i] *= -1;
 
 		}
@@ -598,6 +606,18 @@ public class QuoteActivityMain extends Activity  {
 		newAdview.loadAd(newAdReq);
 		/******************************* ADVERTISEMENT SECTION********************/
 
+	}
+	boolean isIndexAlreadyPresent(int index, int size)
+	{
+		for(int i=0;i<size;i++){
+			if(quoteIndexArray[i] == index)
+			{
+				Log.d("JKS","Already added "+index);
+				return true;
+				
+			}
+		}
+		return false;
 	}
 	private void displayAdd()
 	{

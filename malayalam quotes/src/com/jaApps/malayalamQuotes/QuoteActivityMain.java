@@ -102,7 +102,7 @@ public class QuoteActivityMain extends Activity  {
 	static final int MIN_DISTANCE = 150;
 	static final int BTN_FONT_SIZE = 24;
 
-	static final int TOTAL_QUOTE_SIZE = 4;
+	static final int TOTAL_QUOTE_SIZE = 13;
 	static final int INTERSTITIAL_ADD_DISPLAY_COUNT = 10;
 	static final int INVALID_ID = -11;
 	public static final int AD_REQUEST_SUCCEEDED = 101;
@@ -247,14 +247,26 @@ public class QuoteActivityMain extends Activity  {
 		for(int i=0 ; i < TOTAL_QUOTE_SIZE; i++)
 			favQuotes[i] = 0;
 		quoteIndexArray = new int[TOTAL_QUOTE_SIZE];
+		int idx = 0;
 		for(int i=0 ; i < TOTAL_QUOTE_SIZE; i++)
 		{
-			Random rand = new Random();
-			quoteIndexArray[i] = rand.nextInt() % TOTAL_QUOTE_SIZE;
+			Random rand;
+			do {
+				rand = new Random();
+				idx = rand.nextInt() % TOTAL_QUOTE_SIZE;
+				if(idx<0) idx *= -1;
+			}
+			
+			while(isIndexAlreadyPresent(idx, i));	
+			quoteIndexArray[i] = idx;
 			if (quoteIndexArray[i] < 0) quoteIndexArray[i] *= -1;
 
 		}
-
+		for(int i=0;i<TOTAL_QUOTE_SIZE; i++)
+		{
+			//Log.d("JKS","id = "+quoteIndexArray[i]);
+		}
+		
 		try {
 			fillFavQuote();
 		} catch (IOException e1) {
@@ -612,6 +624,18 @@ public class QuoteActivityMain extends Activity  {
 		newAdview.loadAd(newAdReq);
 		/******************************* ADVERTISEMENT SECTION********************/
 
+	}
+	boolean isIndexAlreadyPresent(int index, int size)
+	{
+		for(int i=0;i<size;i++){
+			if(quoteIndexArray[i] == index)
+			{
+				Log.d("JKS","Already added "+index);
+				return true;
+				
+			}
+		}
+		return false;
 	}
 	private void displayAdd()
 	{
