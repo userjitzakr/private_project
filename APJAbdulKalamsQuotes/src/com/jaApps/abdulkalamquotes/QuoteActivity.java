@@ -534,7 +534,7 @@ public class QuoteActivity extends Activity  {
 		//ADDS
 		final AdView newAdview = (AdView)findViewById(R.id.adView);
 		//final AdRequest newAdReq = new AdRequest.Builder().build();
-		final AdRequest newAdReq = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).addTestDevice("548C643D6A36F2D96EE1BD44A4CB5794").build();
+		final AdRequest newAdReq = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).addTestDevice("548C643D6A36F2D96EE1BD44A4CB5794").addTestDevice("1AC7C85821FE0F8206BE8179465240FD").build();
 		// Prepare the Interstitial Ad
 		interstitial = new InterstitialAd(QuoteActivity.this);
 		// Insert the Ad Unit ID
