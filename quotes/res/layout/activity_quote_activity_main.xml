@@ -4,8 +4,19 @@
     android:id="@+id/rel_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/blue_bg"
     tools:context="${relativePackage}.${activityClass}" >
+
+     <ImageView
+         android:id="@+id/img_bg"
+         android:layout_width="fill_parent"
+         android:layout_height="fill_parent"
+         android:layout_alignParentEnd="true"
+         android:layout_alignParentRight="true"
+         android:layout_centerVertical="true"
+         android:background="@drawable/img_bg_0"
+         android:contentDescription="@string/img_desc"
+         android:scaleType="fitXY"
+         android:src="@drawable/img_bg_1" />
 
     <ScrollView
         android:id="@+id/scrl_quesion"
@@ -69,15 +80,7 @@
             ads:adSize="BANNER"
             ads:adUnitId="@string/ad_Unit_ID" >
         </com.google.android.gms.ads.AdView>
-            <com.inmobi.monetization.IMBanner
-        android:id="@+id/bannerView"
-        android:layout_marginLeft="20dp"
-        android:layout_marginStart="20dp" 
-        android:layout_width="320dp"
-        android:layout_height="50dp"
-        android:layout_above="@+id/button_favorite"
-        adSize="15"
-        appId="@string/inmobi_property_id" />
+          
     </RelativeLayout>
 
     <SlidingDrawer

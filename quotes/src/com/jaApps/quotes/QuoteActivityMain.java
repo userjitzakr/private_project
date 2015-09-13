@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Map;
 import java.util.Random;
 
 import org.apache.http.HttpEntity;
@@ -29,10 +28,10 @@ import org.xmlpull.v1.XmlPullParserFactory;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
@@ -43,6 +42,8 @@ import android.view.View.OnTouchListener;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.ImageView.ScaleType;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.SlidingDrawer;
@@ -87,6 +88,7 @@ public class QuoteActivityMain extends Activity  {
 	public String str_quote;
 	public int currentQuoteId = 0;
 	public int quoteIndex = 0;
+	public int img_cnt = 0;
 	public boolean isQuoteAvailable;
 	// Animation
 	public Animation animFadein;
@@ -101,6 +103,7 @@ public class QuoteActivityMain extends Activity  {
 	static final int BTN_FONT_SIZE = 24;
 
 	static final int TOTAL_QUOTE_SIZE = 150;
+	static final int TOTAL_BG_IMG_SIZE = 12;
 	static final int INTERSTITIAL_ADD_DISPLAY_COUNT = 10;
 	static final int INVALID_ID = -11;
 	public static final int AD_REQUEST_SUCCEEDED = 101;
@@ -278,16 +281,18 @@ public class QuoteActivityMain extends Activity  {
 				slidingDrawer.animateClose();
 				RelativeLayout rel_layout = (RelativeLayout)findViewById(R.id.rel_layout);
 				Button btnFav = (Button)findViewById(R.id.Button01);
-				rel_layout.startAnimation(animFadein);
+				//rel_layout.startAnimation(animFadein);
 				if(viewFav == false){
-					rel_layout.setBackgroundResource(R.drawable.red_bg2);
+					//rel_layout.setBackgroundResource(R.drawable.red_bg2);
+					rel_layout.setBackgroundColor(Color.BLACK);
 					btnFav.setText("Quotes ");
 					viewFav = true;
 					favIndex = 0;		
 					//text_quote.setTextColor(Color.WHITE);
 				}
 				else{
-					rel_layout.setBackgroundResource(R.drawable.blue_bg);
+					//rel_layout.setBackgroundResource(R.drawable.blue_bg);
+					rel_layout.setBackgroundColor(Color.BLACK);
 					btnFav.setText("Favorites ");
 					viewFav = false;
 					//	text_quote.setTextColor(Color.WHITE);
@@ -543,7 +548,7 @@ public class QuoteActivityMain extends Activity  {
 		//ADDS
 		final AdView newAdview = (AdView)findViewById(R.id.adView);
 		//final AdRequest newAdReq = new AdRequest.Builder().build();
-		final AdRequest newAdReq = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).addTestDevice("548C643D6A36F2D96EE1BD44A4CB5794").build();
+		final AdRequest newAdReq = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).addTestDevice("548C643D6A36F2D96EE1BD44A4CB5794").addTestDevice("1AC7C85821FE0F8206BE8179465240FD").build();
 		// Prepare the Interstitial Ad
 		interstitial = new InterstitialAd(QuoteActivityMain.this);
 		// Insert the Ad Unit ID
@@ -690,6 +695,15 @@ public class QuoteActivityMain extends Activity  {
 			// Load ads into Interstitial Ads
 			interstitial.loadAd(newAdReq);
 		}
+		
+		String bg_img = "img_bg_"+img_cnt%TOTAL_BG_IMG_SIZE;
+		img_cnt++;
+		ImageView img_bg = (ImageView)findViewById(R.id.img_bg);
+		Resources res = getResources();
+		int resID = res.getIdentifier(bg_img , "drawable", getPackageName());
+		img_bg.setImageResource(resID);
+		img_bg.setScaleType(ScaleType.FIT_XY);
+		img_bg.startAnimation(animFadein);
 		text_quote.setText("Cannot Display Quotes Right Now;");
 		// TODO optimise the koothara code below
 		if(viewFav == true){
