@@ -30,6 +30,7 @@ import org.xmlpull.v1.XmlPullParserFactory;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -44,6 +45,8 @@ import android.view.View.OnTouchListener;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.ImageView.ScaleType;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.SlidingDrawer;
@@ -89,6 +92,7 @@ public class QuoteActivityMain extends Activity  {
 	public String str_quote;
 	public int currentQuoteId = 0;
 	public int quoteIndex = 0;
+	public int img_cnt = 0;
 	public boolean isQuoteAvailable;
 	// Animation
 	public Animation animFadein;
@@ -102,7 +106,8 @@ public class QuoteActivityMain extends Activity  {
 	static final int MIN_DISTANCE = 150;
 	static final int BTN_FONT_SIZE = 24;
 
-	static final int TOTAL_QUOTE_SIZE = 23;
+	static final int TOTAL_QUOTE_SIZE = 58;
+	static final int TOTAL_BG_IMG_SIZE = 25;
 	static final int INTERSTITIAL_ADD_DISPLAY_COUNT = 10;
 	static final int INVALID_ID = -11;
 	public static final int AD_REQUEST_SUCCEEDED = 101;
@@ -132,6 +137,7 @@ public class QuoteActivityMain extends Activity  {
 	XmlPullParser parser;
     InputStream in_s;
     boolean dataLoaded = false;
+    boolean enableAds = false;
 
 	//inMobi adview
 	private IMBanner bannerAdView;
@@ -205,11 +211,6 @@ public class QuoteActivityMain extends Activity  {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_quote_activity_main);
-		RelativeLayout rel_layout = (RelativeLayout)findViewById(R.id.rel_layout);
-		rel_layout.setBackgroundColor(Color.rgb(255, 140, 7));
-		// load data
-		// this function gets the quote from an internal xml file "file:///android_asset/data/quotes.xml
-		
 		try {
 			pullParserFactory = XmlPullParserFactory.newInstance();
 			parser = pullParserFactory.newPullParser();
@@ -296,7 +297,7 @@ public class QuoteActivityMain extends Activity  {
 				rel_layout.startAnimation(animFadein);
 				if(viewFav == false){
 				//	rel_layout.setBackgroundResource(R.drawable.red_bg2);
-					rel_layout.setBackgroundColor(Color.RED);
+					rel_layout.setBackgroundColor(Color.BLACK);
 					btnFav.setText("ഉദ്ധരണി ");
 					viewFav = true;
 					favIndex = 0;		
@@ -304,7 +305,8 @@ public class QuoteActivityMain extends Activity  {
 				}
 				else{
 				//	rel_layout.setBackgroundResource(R.drawable.blue_bg);
-					rel_layout.setBackgroundColor(Color.rgb(255, 140, 7));
+			//		rel_layout.setBackgroundColor(Color.rgb(255, 140, 7));
+					rel_layout.setBackgroundColor(Color.BLACK);
 					btnFav.setText("ഇഷ്ടപ്പെട്ടത്   ");
 					viewFav = false;
 					//	text_quote.setTextColor(Color.WHITE);
@@ -561,7 +563,7 @@ public class QuoteActivityMain extends Activity  {
 		//ADDS
 		final AdView newAdview = (AdView)findViewById(R.id.adView);
 		//final AdRequest newAdReq = new AdRequest.Builder().build();
-		final AdRequest newAdReq = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).addTestDevice("548C643D6A36F2D96EE1BD44A4CB5794").build();
+		final AdRequest newAdReq = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).addTestDevice("548C643D6A36F2D96EE1BD44A4CB5794").addTestDevice("1AC7C85821FE0F8206BE8179465240FD").build();
 		// Prepare the Interstitial Ad
 		interstitial = new InterstitialAd(QuoteActivityMain.this);
 		// Insert the Ad Unit ID
@@ -572,6 +574,7 @@ public class QuoteActivityMain extends Activity  {
 			public void onAdLoaded() {
 				Log.d("JKS","add loaded");
 				// Call displayInterstitial() function
+				if(enableAds)
 				displayAdd();
 
 			}
@@ -620,7 +623,7 @@ public class QuoteActivityMain extends Activity  {
 				Log.d("JKS","onAdclosed");
 			}
 		});
-		
+		if(enableAds)
 		newAdview.loadAd(newAdReq);
 		/******************************* ADVERTISEMENT SECTION********************/
 
@@ -706,8 +709,18 @@ public class QuoteActivityMain extends Activity  {
 			AdRequest newAdReq = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).addTestDevice("548C643D6A36F2D96EE1BD44A4CB5794").build();
 
 			// Load ads into Interstitial Ads
+			if(enableAds)
 			interstitial.loadAd(newAdReq);
 		}
+		
+		String bg_img = "img_bg_"+img_cnt%TOTAL_BG_IMG_SIZE;
+		img_cnt++;
+		ImageView img_bg = (ImageView)findViewById(R.id.img_bg);
+		Resources res = getResources();
+		int resID = res.getIdentifier(bg_img , "drawable", getPackageName());
+		img_bg.setImageResource(resID);
+		img_bg.setScaleType(ScaleType.FIT_XY);
+		img_bg.startAnimation(animFadein);
 		text_quote.setText("Cannot Display Quotes Right Now;");
 		// TODO optimise the koothara code below
 		if(viewFav == true){

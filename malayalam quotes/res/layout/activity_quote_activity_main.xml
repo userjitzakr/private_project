@@ -4,8 +4,29 @@
     android:id="@+id/rel_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffa500"
+    android:background="#000000"
     tools:context="${relativePackage}.${activityClass}" >
+
+     <ImageView
+         android:id="@+id/img_bg"
+         android:layout_width="fill_parent"
+         android:layout_height="fill_parent"
+         android:layout_alignParentEnd="true"
+         android:layout_alignParentRight="true"
+         android:layout_centerVertical="true"
+         android:background="@drawable/img_bg_0"
+         android:contentDescription="@string/img_desc"
+         android:scaleType="fitXY"
+         android:src="@drawable/img_bg_1" />
+
+       <Button
+            android:id="@+id/button_share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/share" />
 
     <ScrollView
         android:id="@+id/scrl_quesion"
@@ -31,7 +52,9 @@
                 android:text="@string/cannot_use_quotes"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="#ffffff" />
+           
         </RelativeLayout>
+        
     </ScrollView>
 
     <RelativeLayout
@@ -48,14 +71,7 @@
             android:layout_alignParentStart="true"
             android:background="@drawable/not_favorite" />
 
-        <Button
-            android:id="@+id/button_share"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:background="@drawable/share" />
+      
 
         <com.google.android.gms.ads.AdView
             android:id="@+id/adView"
@@ -191,5 +207,7 @@
             </ScrollView>
         </LinearLayout>
     </SlidingDrawer>
+
+    
 
 </RelativeLayout>
