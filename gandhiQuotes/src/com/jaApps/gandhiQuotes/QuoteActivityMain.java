@@ -93,8 +93,8 @@ public class QuoteActivityMain extends Activity  {
 	static final int MIN_DISTANCE = 150;
 	static final int BTN_FONT_SIZE = 24;
 
-	static final int TOTAL_QUOTE_SIZE = 150;
-	static final int TOTAL_BG_IMG_SIZE = 12;
+	static final int TOTAL_QUOTE_SIZE = 120;
+	static final int TOTAL_BG_IMG_SIZE = 10;
 	static final int INTERSTITIAL_ADD_DISPLAY_COUNT = 10;
 	static final int INVALID_ID = -11;
 	public static final int AD_REQUEST_SUCCEEDED = 101;
@@ -286,9 +286,11 @@ public class QuoteActivityMain extends Activity  {
 			public void onClick(View arg0) {
 
 				TextView info = (TextView)findViewById(R.id.textView_info_help);
-				info.setText("Collection of quotes by Mahatma Gandhi" +
-				        "\n"+
-						"Developed by jaApps"
+				info.setText("Mohandas Karamchand Gandhi (2 October 1869 – 30 January 1948) was the preeminent leader of the Indian independence movement in British-ruled India. Employing nonviolent civil disobedience, Gandhi led India to independence and inspired movements for civil rights and freedom across the world."+
+
+						"He is also called Bapu. Born and raised in a Hindu merchant caste family in coastal Gujarat, western India, and trained in law at the Inner Temple, London, Gandhi first employed nonviolent civil disobedience as an expatriate lawyer in South Africa, in the resident Indian community's struggle for civil rights. After his return to India in 1915, he set about organising peasants, farmers, and urban labourers to protest against excessive land-tax and discrimination. Assuming leadership of the Indian National Congress in 1921, Gandhi led nationwide campaigns for easing poverty, expanding women's rights, building religious and ethnic amity, ending untouchability, but above all for achieving Swaraj or self-rule."+
+						"Gandhi famously led Indians in challenging the British-imposed salt tax with the 400 km (250 mi) Dandi Salt March in 1930, and later in calling for the British to Quit India in 1942. He was imprisoned for many years, upon many occasions, in both South Africa and India. Gandhi attempted to practise nonviolence and truth in all situations, and advocated that others do the same. He lived modestly in a self-sufficient residential community and wore the traditional Indian dhoti and shawl, woven with yarn hand-spun on a charkha. He ate simple vegetarian food, and also undertook long fasts as a means of both self-purification and social protest."+
+						"Gandhi's vision of an independent India based on religious pluralism, however, was challenged in the early 1940s by a new Muslim nationalism which was demanding a separate Muslim homeland carved out of India. Eventually, in August 1947, Britain granted independence, but the British Indian Empire was partitioned into two dominions, a Hindu-majority India and Muslim Pakistan. As many displaced Hindus, Muslims, and Sikhs made their way to their new lands, religious violence broke out, especially in the Punjab and Bengal. Eschewing the official celebration of independence in Delhi, Gandhi visited the affected areas, attempting to provide solace. In the months following, he undertook several fasts unto death to promote religious harmony. The last of these, undertaken on 12 January 1948 at age 78, also had the indirect goal of pressuring India to pay out some cash assets owed to Pakistan.Some Indians thought Gandhi was too accommodating. Nathuram Godse, a Hindu nationalist, assassinated Gandhi on 30 January 1948 by firing three bullets into his chest at point-blank range."                                                                                
 						);
 				info.startAnimation(animFadein2);
 			}
