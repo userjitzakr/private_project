@@ -9,8 +9,8 @@
     <string name="ad_Unit_ID">ca-app-pub-4695095847139423/5098487790</string>
     <string name="ad_Unit_ID_interstitial">ca-app-pub-4695095847139423/6744527790</string>
      -->
-     <string name="ad_Unit_ID">ca-app-pub-2498468757920270/9669739346</string>
-    <string name="ad_Unit_ID_interstitial">ca-app-pub-2498468757920270/2146472540</string>
+     <string name="ad_Unit_ID">ca-app-pub-2498468757920270/2605740145</string>
+    <string name="ad_Unit_ID_interstitial">ca-app-pub-2498468757920270/5559206545</string>
     <string name="hello_world">Hello world!</string>
     <string name="cannot_use_quotes">തല്കാലം ഉദ്ധരണികൾ കാണിക്കാൻ പറ്റുന്നതല്ല </string>
     <string name="img_desc">image to be used</string>
