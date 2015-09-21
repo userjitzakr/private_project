@@ -3,14 +3,9 @@
 
     <string name="app_name">Gandhi Quotes</string>
     <string name="inmobi_property_id">fbbb63e08c6443eb8e1ce0830b1a91a7</string>
-    <!-- <string name="inmobi_property_id">53d0ef05be81426ea33d9e7005a32a94</string> -->
-    <!--
-    old account of jithin01@gmail.com 
-    <string name="ad_Unit_ID">ca-app-pub-4695095847139423/5098487790</string>
-    <string name="ad_Unit_ID_interstitial">ca-app-pub-4695095847139423/6744527790</string>
-     -->
-     <string name="ad_Unit_ID">ca-app-pub-2498468757920270/9669739346</string>
-    <string name="ad_Unit_ID_interstitial">ca-app-pub-2498468757920270/2146472540</string>
+    
+     <string name="ad_Unit_ID">ca-app-pub-2498468757920270/8286856941</string>
+    <string name="ad_Unit_ID_interstitial">ca-app-pub-2498468757920270/9763590144</string>
     <string name="hello_world">Hello world!</string>
     <string name="cannot_use_quotes">Cannot show quotes now</string>
     <string name="img_desc">image to be used</string>

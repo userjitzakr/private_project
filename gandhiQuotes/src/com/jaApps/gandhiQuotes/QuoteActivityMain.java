@@ -124,7 +124,7 @@ public class QuoteActivityMain extends Activity  {
 	XmlPullParser parser;
     InputStream in_s;
     boolean dataLoaded = false;
-    boolean enableAds = false;
+    boolean enableAds = true;
 
 	@Override
 	public boolean onTouchEvent(MotionEvent event){
