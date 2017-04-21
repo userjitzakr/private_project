@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_billing__front_page"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/bgColor"
+    tools:context="com.arpo.billing.Billing_FrontPage">
+
+    <Button
+        android:layout_marginTop="37dp"
+        android:id="@+id/btn_frontPage_stock"
+        android:background="@drawable/page1btnstock"
+        android:layout_width="200dp"
+        android:layout_below="@+id/btn_frontPage_sale"
+        android:layout_alignParentEnd="true"
+        android:layout_height="70dp" />
+
+    <Button
+        android:layout_marginTop="55dp"
+        android:id="@+id/btn_frontPage_sale"
+        android:background="@drawable/page1btnsale"
+        android:layout_height="70dp"
+        android:layout_width="200dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="250dp"
+        android:id="@+id/btn_frontPage_settings"
+        android:background="@drawable/page1btnsettings"
+        android:layout_marginTop="60dp"
+        android:layout_height="70dp"
+        android:layout_below="@+id/btn_frontPage_purchase"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_marginTop="58dp"
+        android:id="@+id/btn_frontPage_purchase"
+        android:background="@drawable/page1btnpurchase"
+        android:layout_width="300dp"
+        android:layout_height="70dp"
+        android:layout_below="@+id/btn_frontPage_stock"
+        android:layout_alignParentStart="true" />
+</RelativeLayout>

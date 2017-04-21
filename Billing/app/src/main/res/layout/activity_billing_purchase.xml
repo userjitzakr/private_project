@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_billing_purchase"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.arpo.billing.Billing_purchase"
+    android:background="@color/bgColor">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/purchaseim"
+        android:id="@+id/imageView5"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="147dp"
+        tools:ignore="ContentDescription" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+
+        android:layout_below="@+id/imageView5"
+        android:layout_height="match_parent">
+    <TextView
+        android:text="@string/select_item_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="29dp"
+        android:id="@+id/txt_purchase_select_itemType"
+        android:textColor="@color/white" />
+
+    <GridView
+        android:layout_width="match_parent"
+        android:layout_below="@+id/txt_purchase_select_itemType"
+        android:layout_alignStart="@+id/txt_purchase_select_itemType"
+        android:layout_marginTop="19dp"
+        android:id="@+id/lv_purchase_select_item"
+        android:layout_height="100dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_marginTop="17dp"
+        android:id="@+id/btn_purchase_addItem"
+        android:background="@drawable/addpurchaseitem"
+        android:layout_below="@+id/lv_purchase_select_item"
+        android:layout_height="30dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true" />
+    </RelativeLayout>
+    <TextView
+        android:text="@string/brand_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/txt_purchase_brand_label"
+        android:textColor="@color/white" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/edit_purchase_description"
+        android:background="@color/white"
+        android:layout_below="@+id/txt_purchase_brand_label"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="12dp"
+        android:layout_alignParentEnd="true"
+        android:maxLines="1"
+        tools:ignore="LabelFor" />
+
+    <TextView
+        android:text="@string/price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edit_purchase_description"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="14dp"
+        android:id="@+id/txt_purchase_price_label"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:text="@string/selling_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/txt_purchase_price_label"
+        android:layout_toEndOf="@+id/txt_purchase_price_label"
+        android:layout_marginStart="82dp"
+        android:id="@+id/txt_purchase_sellprice_label"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:text="@string/quantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/txt_purchase_sellprice_label"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/txt_purchase_qty_label"
+        android:textColor="@color/white" />
+
+    <EditText
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName|number"
+        android:ems="10"
+        android:id="@+id/edit_purchase_price"
+        android:background="@color/white"
+        android:layout_width="100dp"
+        android:layout_below="@+id/txt_purchase_price_label"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="12dp"
+        tools:ignore="LabelFor" />
+
+    <EditText
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName|number"
+        android:ems="10"
+        android:id="@+id/edit_purchase_selprice"
+        android:background="@color/white"
+        android:layout_alignBaseline="@+id/edit_purchase_price"
+        android:layout_alignBottom="@+id/edit_purchase_price"
+        android:layout_alignStart="@+id/txt_purchase_sellprice_label"
+        tools:ignore="LabelFor" />
+
+    <EditText
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName|number"
+        android:ems="10"
+        android:id="@+id/edit_purchase_qty"
+        android:background="@color/white"
+        android:layout_alignBaseline="@+id/edit_purchase_selprice"
+        android:layout_alignBottom="@+id/edit_purchase_selprice"
+        android:layout_alignParentEnd="true"
+        android:layout_width="80dp"
+        tools:ignore="LabelFor" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_marginTop="31dp"
+        android:id="@+id/btn_purchase_scancode"
+        android:layout_below="@+id/edit_purchase_price"
+        android:layout_alignParentStart="true"
+        android:background="@drawable/scanbarcode"
+        android:layout_toStartOf="@+id/edit_purchase_selprice"
+        android:layout_alignEnd="@+id/txt_purchase_brand_label"
+        android:layout_height="40dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:id="@+id/btn_purchase_save"
+        android:background="@drawable/purchasesave"
+        android:layout_alignParentBottom="true"
+        android:layout_toEndOf="@+id/txt_purchase_sellprice_label"
+        android:layout_height="50dp" />
+
+    <TextView
+        android:id="@+id/txt_purchase_barcode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btn_purchase_save"
+        android:layout_alignParentEnd="true"
+        android:layout_alignStart="@+id/imageView5"
+        android:layout_alignTop="@+id/btn_purchase_scancode"
+        android:layout_marginLeft="20dp"
+        android:layout_toEndOf="@+id/edit_purchase_selprice"
+        android:text="@string/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+        android:textColor="@color/white" />
+</RelativeLayout>

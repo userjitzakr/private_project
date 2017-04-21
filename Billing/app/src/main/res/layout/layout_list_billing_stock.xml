@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:layout_alignParentTop="true"
+    android:background="@color/stockbg"
+    android:layout_marginTop="20dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@color/stockbg">
+
+
+        <TextView
+            android:text="@string/textview12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/txt_list_stock_sold_label"
+            android:layout_alignStart="@+id/txt_list_stock_total_available"
+            android:id="@+id/txt_list_stock_total_sold"
+            android:textColor="@color/stockText" />
+
+        <TextView
+            android:text="@string/total_sold_till_now"
+            android:layout_height="wrap_content"
+            android:id="@+id/txt_list_stock_sold_label"
+            android:textColor="@color/stockText"
+            android:layout_below="@+id/txt_list_stock_itemAvailable"
+            android:layout_alignEnd="@+id/txt_list_stock_itemAvailable"
+            android:layout_marginTop="5dp"
+            android:layout_width="150dp" />
+
+        <TextView
+            android:text="@string/textview14"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txt_stock_list_itemText"
+            android:textColor="@color/stockText"
+            android:textStyle="normal|bold"
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@+id/txt_list_stock_sold_label"
+            android:layout_marginTop="12dp" />
+
+        <TextView
+            android:text="@string/available"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/txt_list_stock_itemAvailable"
+            android:textColor="@color/stockText"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="36dp" />
+
+        <TextView
+            android:text="@string/textview15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txt_list_stock_total_available"
+            android:textColor="@color/stockText"
+            android:layout_marginLeft="10dp"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/txt_list_stock_itemAvailable"
+            tools:ignore="RtlHardcoded" />
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

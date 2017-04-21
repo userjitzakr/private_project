@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_billing_add_item"
+    android:background="@color/colorPrimaryDark"
+    android:layout_height="300dp"
+    android:layout_width="300dp"
+    android:paddingBottom="2dp"
+    android:paddingLeft="2dp"
+    android:paddingRight="2dp"
+    android:paddingTop="2dp"
+    tools:context="com.arpo.billing.Billing_addItem"
+>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bgColor"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+    <TextView
+        android:text="@string/item_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_additem_itemName_label"
+        android:layout_alignStart="@+id/txt_additem_itemName_label"
+        android:layout_marginTop="31dp"
+        android:id="@+id/txt_additem_item_description"
+        android:textColor="@color/white" />
+
+        <EditText
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/edit_additem_itemname"
+        android:background="@color/white"
+            android:layout_alignTop="@+id/txt_additem_itemName_label"
+        android:layout_toEndOf="@+id/txt_additem_item_description"
+        android:layout_marginStart="18dp"
+        tools:ignore="LabelFor"
+            android:layout_width="100dp" />
+
+    <EditText
+        android:layout_height="40dp"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:layout_alignTop="@+id/txt_additem_item_description"
+        android:layout_alignStart="@+id/edit_additem_itemname"
+        android:id="@+id/edit_additem_itemdescription"
+        android:background="@color/white"
+        tools:ignore="LabelFor"
+        android:layout_width="100dp" />
+
+        <TextView
+            android:text="@string/item_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="64dp"
+            android:id="@+id/txt_additem_itemName_label"
+            android:textColor="@color/white"
+            tools:ignore="RelativeOverlap"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="17dp" />
+
+        <Button
+            android:id="@+id/btn_additem_save"
+            android:background="@drawable/additemsave"
+            android:layout_height="40dp"
+            android:layout_width="120dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="47dp" />
+
+        <TextView
+            android:text="@string/add_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="12dp"
+            android:id="@+id/txt_addItem_addItem_label"
+            android:textColor="@color/white" />
+    </RelativeLayout>
+</RelativeLayout>

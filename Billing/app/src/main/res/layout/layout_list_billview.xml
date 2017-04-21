@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:layout_alignParentTop="true"
+    android:background="@color/stockbg"
+    android:layout_marginTop="20dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@color/stockText">
+    <TextView
+        android:text="@string/bill_no"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2"
+        android:textColor="@color/white"
+        android:layout_centerVertical="true"
+        android:layout_alignStart="@+id/textView" />
+
+    <TextView
+        android:text="@string/bill_amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView3"
+        android:textColor="@color/white"
+        android:layout_alignBaseline="@+id/txt_list_billview_amt"
+        android:layout_alignBottom="@+id/txt_list_billview_amt"
+        android:layout_alignStart="@+id/textView2" />
+
+    <TextView
+        android:text="@string/date2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView"
+        android:textColor="@color/white"
+        android:layout_marginStart="12dp"
+        android:layout_alignBaseline="@+id/txt_list_billview_date"
+        android:layout_alignBottom="@+id/txt_list_billview_date"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="@string/_103"
+        android:layout_height="wrap_content"
+        android:id="@+id/txt_list_billview_date"
+        android:textColor="@color/white"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/txt_list_billview_billno"
+        android:layout_marginTop="12dp"
+        android:layout_width="200dp" />
+
+    <TextView
+        android:text="@string/_10003"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txt_list_billview_billno"
+        android:textColor="@color/white"
+
+        android:layout_marginRight="20dp"
+        android:layout_marginStart="44dp"
+        android:layout_alignBaseline="@+id/textView2"
+        android:layout_alignBottom="@+id/textView2"
+        android:layout_toEndOf="@+id/textView3"
+        tools:ignore="RtlHardcoded" />
+
+    <TextView
+        android:text="@string/item4"
+        android:layout_height="wrap_content"
+        android:id="@+id/txt_list_billview_amt"
+        android:textColor="@color/white"
+        android:layout_width="80dp"
+        android:layout_marginTop="11dp"
+        android:layout_below="@+id/txt_list_billview_billno"
+        android:layout_alignStart="@+id/txt_list_billview_billno" />
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

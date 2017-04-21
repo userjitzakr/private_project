@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_billing_stock"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.arpo.billing.Billing_stock"
+    android:background="@color/bgColor">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        app:srcCompat="@drawable/stockimg"
+        android:id="@+id/imageView3"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_height="40dp"
+        android:contentDescription="@string/content_description_for_image" />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:id="@+id/lv_stock"
+        android:layout_below="@+id/imageView3"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="28dp"
+        android:divider="@null"
+        android:layout_height="match_parent"
+        android:dividerHeight="10.0sp" />
+</RelativeLayout>

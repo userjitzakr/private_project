@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_billing_sale_page"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin_less"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/bgColor"
+    tools:context="com.arpo.billing.Billing_salePage">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_alignParentStart="true"
+        android:id="@+id/btn_sale_history"
+        android:background="@drawable/history"
+        android:layout_toStartOf="@+id/txt_sale_total"
+        android:layout_height="40dp" />
+
+    <AutoCompleteTextView
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/edit_sale_pdtId"
+        android:layout_marginStart="14dp"
+        android:layout_width="170dp"
+        android:labelFor="@+id/edit_sale_pdtId"
+        android:textAlignment="viewStart"
+        android:layout_alignBottom="@+id/txt_sale_itemCode"
+        android:layout_toEndOf="@+id/txt_sale_itemCode"
+        android:layout_marginEnd="5dp"
+        android:background="@color/white"
+        android:layout_alignTop="@+id/txt_sale_itemCode" />
+
+    <Button
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/btn_sale_search"
+        android:background="@drawable/search"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/edit_sale_pdtId"
+        android:layout_alignBottom="@+id/edit_sale_pdtId"
+        android:layout_alignTop="@+id/txt_sale_itemCode"
+        />
+
+    <Button
+        android:layout_width="70dp"
+        android:layout_below="@+id/edit_sale_pdtId"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="16dp"
+        android:id="@+id/btn_sale_scan"
+        android:background="@drawable/scan"
+        android:layout_height="40dp"
+        android:layout_alignStart="@+id/btn_sale_makeBill"
+        />
+
+    <TextView
+        android:text="@string/amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/txt_sale_descr"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="11dp"
+        android:id="@+id/txt_sale_amount"
+        android:textColor="@color/white" />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/txt_sale_slno"
+        android:id="@+id/lv_sale"
+        android:layout_marginBottom="100dp"
+        android:layout_marginTop="10dp"
+        android:dividerHeight="10.0sp" />
+
+    <TextView
+        android:text="@string/total_payable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txt_sale_grant_total_label"
+        android:textColor="@color/white"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/txt_sale_discount_label" />
+
+    <TextView
+        android:text="@string/_116"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/txt_sale_grant_total"
+        android:textColor="@color/white"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/txt_sale_tax" />
+
+    <EditText
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/edit_sale_discount"
+        android:background="@color/white"
+        android:layout_alignBottom="@+id/txt_sale_discount_label"
+        android:layout_alignStart="@+id/txt_sale_tax"
+        android:labelFor="@+id/edit_sale_discount"
+        android:maxLines="1" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:id="@+id/btn_sale_clear"
+        android:background="@drawable/clear"
+        android:layout_height="35dp"
+        android:layout_alignTop="@+id/btn_sale_scan"
+        android:layout_alignParentStart="true"
+        android:layout_alignBottom="@+id/btn_sale_scan"
+        android:layout_alignEnd="@+id/txt_sale_item" />
+
+    <TextView
+        android:text="@string/sl_no"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:id="@+id/txt_sale_slno"
+        android:textColor="@color/white"
+        android:layout_below="@+id/btn_sale_clear"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="@string/description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txt_sale_descr"
+        android:textColor="@color/white"
+        android:layout_above="@+id/lv_sale"
+        android:layout_alignEnd="@+id/edit_sale_discount" />
+
+    <Button
+        android:id="@+id/btn_sale_makeBill"
+        android:background="@drawable/makebill"
+        android:layout_width="100dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_height="80dp" />
+
+    <TextView
+        android:text="@string/service_tax"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txt_sale_tax_label"
+        android:textColor="@color/white"
+        android:layout_above="@+id/edit_sale_discount"
+        android:layout_alignStart="@+id/txt_sale_total_label" />
+
+    <TextView
+        android:text="@string/discount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txt_sale_discount_label"
+        android:textColor="@color/white"
+        android:layout_above="@+id/txt_sale_grant_total_label"
+        android:layout_alignStart="@+id/txt_sale_tax_label" />
+
+    <TextView
+        android:text="@string/_100"
+        android:layout_height="wrap_content"
+        android:id="@+id/txt_sale_total"
+        android:textColor="@color/white"
+        android:layout_alignTop="@+id/btn_sale_makeBill"
+        android:layout_alignStart="@+id/txt_sale_tax"
+        android:layout_width="50dp" />
+
+    <TextView
+        android:text="@string/total"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="13dp"
+        android:id="@+id/txt_sale_total_label"
+        android:textColor="@color/white"
+        android:layout_alignBaseline="@+id/txt_sale_total"
+        android:layout_alignBottom="@+id/txt_sale_total"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="@string/_16"
+        android:layout_height="wrap_content"
+        android:id="@+id/txt_sale_tax"
+        android:textColor="@color/white"
+        android:layout_above="@+id/edit_sale_discount"
+        android:layout_centerHorizontal="true"
+        android:layout_width="50dp" />
+
+    <TextView
+        android:text="@string/item_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txt_sale_itemCode"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="22sp"
+        android:typeface="serif"
+        android:textColor="@color/white"
+        android:layout_below="@+id/btn_sale_history"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="11dp" />
+
+    <TextView
+        android:text="@string/item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txt_sale_item"
+        android:textColor="@color/white"
+        android:layout_above="@+id/lv_sale"
+        android:layout_alignEnd="@+id/txt_sale_grant_total_label" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/sale"
+        android:id="@+id/imageView"
+        android:contentDescription="@string/content_description_for_image"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignBottom="@+id/btn_sale_history"
+        android:layout_alignStart="@+id/btn_sale_scan" />
+</RelativeLayout>

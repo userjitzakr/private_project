@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "412342266056",
+    "firebase_url": "https://billing-d0ccc.firebaseio.com",
+    "project_id": "billing-d0ccc",
+    "storage_bucket": "billing-d0ccc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:412342266056:android:3924b0ea857d3f7e",
+        "android_client_info": {
+          "package_name": "com.arpo.billing"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "412342266056-170eec2tvd0qnlihl4qhatqh4u2251rq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.arpo.billing",
+            "certificate_hash": "8682c7ecd5b4c53fa718cd958e9c6936db3a6ee0"
+          }
+        },
+        {
+          "client_id": "412342266056-to2n39kn2lfomn7rrittofmr4jr9m9o8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQx3wPJQ76i7NpJQlzpEwKsZEFr7xFCfg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "412342266056-to2n39kn2lfomn7rrittofmr4jr9m9o8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

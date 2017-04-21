@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="150dp"
+    android:background="@color/bgColor"
+    android:layout_marginTop="5dp"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp"
+    android:layout_height="30dp">
+
+
+    <ImageView
+        android:layout_height="20dp"
+        app:srcCompat="@drawable/selecteditem"
+        android:id="@+id/img_purchase_item_img_selected"
+        tools:ignore="ContentDescription"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_width="15dp" />
+
+    <TextView
+        android:text="@string/item_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txt_stock_list_itemText"
+        android:textColor="@color/white"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/img_purchase_item_img_selected"
+        android:layout_marginStart="11dp" />
+</RelativeLayout>
